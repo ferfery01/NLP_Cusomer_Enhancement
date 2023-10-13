@@ -1,0 +1,181 @@
+---
+# This section is used to define triggers for the pipeline specifically
+# when Pull Requests (PRs) are created or updated.
+pr:
+    branches:
+        include:
+            - '*'
+
+# This section is used to define and assign values to variables that can
+# be used throughout the pipeline.
+variables:
+    pythonVersion: 3.10
+    condaCacheDir: /usr/share/miniconda/envs
+    pipDownloadDir: $(Pipeline.Workspace)/.pip
+
+# This section is used to define the stages of the pipeline. Each stage
+# can contain one or more jobs. Each job can contain one or more steps.
+jobs:
+    - job: unified_desktop_install_and_test
+      displayName: Unified Desktop-Install and Test
+      pool:
+          vmImage: ubuntu-22.04
+      steps:
+          - checkout: self
+
+          # On hosted agents, conda is left out of PATH by default to keep its Python version
+          # from conflicting with other installed versions. The task.prependpath agent command
+          # will make it available to all subsequent steps.
+          - bash: echo "##vso[task.prependpath]$CONDA/bin"
+            displayName: Add conda to PATH
+
+          # Change the ownership of the condaCacheDir directory to the current user.
+          - bash: |
+                sudo chown -R $(whoami):$(id -ng) $(condaCacheDir)
+            displayName: Fix condaCacheDir directory permissions
+
+          - task: Cache@2
+            inputs:
+                key: python | "$(Agent.OS)" | "$(pythonVersion)" | requirements.txt | setup.cfg
+                restoreKeys: |
+                    python | "$(Agent.OS)" | "$(pythonVersion)" | requirements.txt
+                    python | "$(Agent.OS)" | "$(pythonVersion)"
+                    python | "$(Agent.OS)"
+                path: $(pipDownloadDir)
+            displayName: Cache pip packages
+
+          - script: conda create --yes --quiet --name myenv python=$(pythonVersion)
+            displayName: Create Conda Environment
+
+          - bash: |
+                source activate myenv
+                echo "**************************************************"
+                echo "******** Installing required dependencies ********"
+                echo "**************************************************"
+
+                # Install the rest of the dependencies
+                pip install --cache-dir $(pipDownloadDir) -r requirements.txt
+            displayName: Install dependencies
+
+          - bash: |
+                source activate myenv
+                echo "**************************************************"
+                echo "**** Installing project and dev dependencies *****"
+                echo "**************************************************"
+                pip install --cache-dir $(pipDownloadDir) -e ".[dev]"
+            displayName: Install project and dev dependencies
+
+          - bash: |
+                source activate myenv
+                export PATH=$PATH:/home/vsts_azpcontainer/.local/bin
+
+                PROJECT="unified_desktop"
+                BLACK="true"
+                MYPY="true"
+                FLAKE="true"
+                ISORT="true"
+
+                DEPS="$(pwd)/setup.cfg"
+                CONF_BLACK="$(pwd)/.black.toml"
+                CONF_ISORT="$(pwd)/.isort.cfg"
+                CONF_FLAKE="$(pwd)/.flake8"
+                echo "Project:              ${PROJECT}"
+                echo "Python version:       $(python --version)"
+                echo "Use black?:           ${BLACK}"
+                echo "Use flake8?:          ${FLAKE}"
+                echo "Use isort?:           ${ISORT}"
+                echo "Use mypy?:            ${MYPY}"
+                echo "-------------------------------------"
+
+                pushd "${PROJECT}/"
+                get_tool_version()  { echo $(grep $1 $DEPS | awk -F "==" '{print $2}'); }
+
+                ERROR_BLACK="0"
+                if [[ "${BLACK}" == "true" ]]; then
+                  V=$(get_tool_version "black")
+                  echo "**************************************************"
+                  echo "black: ${V} - checking formatting"
+                  pip install --disable-pip-version-check --cache-dir $(pipDownloadDir) --quiet black=="${V}"
+                  echo "**************************************************"
+                  black --config "${CONF_BLACK}" . || true
+                  ERROR_BLACK="$(git diff --name-only | wc -l)"
+                  git reset --hard HEAD
+                fi
+
+                ERROR_ISORT="0"
+                if [[ "${ISORT}" == "true" ]]; then
+                  V=$(get_tool_version "isort")
+                  echo "**************************************************"
+                  echo "isort: ${V} - checking import ordering"
+                  pip install --disable-pip-version-check --cache-dir $(pipDownloadDir) --quiet isort=="${V}"
+                  echo "**************************************************"
+                  # Using global .isort.cfg in root directory
+                  isort --check-only --profile black --filter-files --settings-path "${CONF_ISORT}" . > isort.txt || true
+                  cat isort.txt
+                  ERROR_ISORT="$(cat isort.txt | wc -l)"
+                fi
+
+                ERROR_FLAKE="0"
+                if [[ "${FLAKE}" == "true" ]]; then
+                   V=$(get_tool_version "flake8")
+                  echo "**************************************************"
+                  echo "flake8: ${V} - linting"
+                  pip install --disable-pip-version-check --cache-dir $(pipDownloadDir) --quiet flake8=="${V}"
+                  echo "**************************************************"
+                  # Using global flake8 config in root directory
+                  flake8 --config "${CONF_FLAKE}" . --output-file flake8.txt || true
+                  cat flake8.txt
+                  ERROR_FLAKE="$(cat flake8.txt | wc -l)"
+                fi
+
+                ERROR_MYPY="0"
+                if [[ "${MYPY}" == "true" ]]; then
+                  V=$(get_tool_version "mypy")
+                  echo "**************************************************"
+                  echo "mypy: ${V} - type checking"
+                  pip install --disable-pip-version-check --cache-dir $(pipDownloadDir) --quiet mypy=="${V}"
+                  echo "**************************************************"
+
+                  # run static type checking, record all output & ensure that mypy doesn't return a non-zero exit code
+                  mypy --ignore-missing-imports --follow-imports=silent --show-column-numbers --no-error-summary --namespace-packages --explicit-package-bases $(find . -type f -name "*.py") > mypy.log || true
+                  cat mypy.log
+
+                  set +e
+                  ERROR_MYPY="$(cat mypy.log | grep 'error:' | wc -l)"
+                  set -e
+                fi
+
+                popd
+
+                if [[ "${BLACK}" == "true" ]]; then
+                  echo "BLACK: There were ${ERROR_BLACK} files that needed to be formatted"
+                fi
+
+                if [[ "${FLAKE}" == "true" ]]; then
+                  echo "FLAKE8: There were ${ERROR_FLAKE} linter problems found."
+                fi
+
+                if [[ "${ISORT}" == "true" ]]; then
+                  echo "ISORT: There were ${ERROR_ISORT} files that need to sort imports."
+                fi
+
+                if [[ "${MYPY}" == "true" ]]; then
+                  echo "MYPY: There were ${ERROR_MYPY} type errors deduced."
+                fi
+
+                if [[ "${ERROR_BLACK}" != "0" || "${ERROR_FLAKE}" != "0" || "${ERROR_ISORT}" != "0" || "${ERROR_MYPY}" != "0" ]]; then
+                  echo "Failed linting"
+                  exit 1
+                else
+                  echo "Linting success"
+                  exit 0
+                fi
+            displayName: Run python linters
+
+          - bash: |
+                echo "**************************************************"
+                echo "*************** Running unit tests ***************"
+                echo "**************************************************"
+                source activate myenv
+                python -c "import pandas; print(pandas.__version__)"
+            displayName: Run unit tests

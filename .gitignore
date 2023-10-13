@@ -1,0 +1,63 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyc
+
+# Mac OS
+.DS_Store
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# editor
+.vscode
+**/.idea/
+**/scratch/
+*.swp
+.vim/
+
+# Cache
+**/local_cache/**
+**/.cache/**
+**/mypy_cache/**
+
+# Checkpoints
+**/checkpoints/**
+*.pt*
+**/wandb/**
+
+# Logs
+**/lightning_logs/**
+**/runs/**
+
+# Dataset
+data/
+
+# Images
+*.jpg
+*.jpeg
+*.png
+
+# local_example
+examples/
+
+# Test scripts
+**/notebooks/**
+*test*.ipynb
