@@ -26,7 +26,7 @@ repos:
                 - --settings-path
                 - .isort.cfg
     - repo: https://github.com/pre-commit/mirrors-mypy
-      rev: v1.5.1
+      rev: v1.6.0
       hooks:
           - id: mypy
             args:
@@ -37,12 +37,25 @@ repos:
                 - --show-column-numbers
                 - --namespace-packages
                 - --explicit-package-bases
+    - repo: https://github.com/kynan/nbstripout
+      rev: 0.6.1
+      hooks:
+          - id: nbstripout
+    - repo: https://github.com/nbQA-dev/nbQA
+      rev: 1.7.0
+      hooks:
+          - id: nbqa-black
+          - id: nbqa-pyupgrade
+            args: [--py310-plus]
+          - id: nbqa-isort
+            args:
+                - --float-to-top
     - repo: https://github.com/jumanjihouse/pre-commit-hook-yamlfmt
       rev: 0.2.3
       hooks:
           - id: yamlfmt
     - repo: https://github.com/pre-commit/pre-commit-hooks
-      rev: v4.4.0
+      rev: v4.5.0
       hooks:
           - id: trailing-whitespace
           - id: end-of-file-fixer

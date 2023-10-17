@@ -1,0 +1,2468 @@
+{
+    "audio_file": {
+        "file_name": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac.wav",
+        "json_file": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac.json"
+    },
+    "type": {
+        "name": "MULTI_SPEAKER_LONG_FORM_TRANSCRIPTION",
+        "version": "2.0"
+    },
+    "value": {
+        "primaryLanguage": "en_US",
+        "primaryVariety": "N/A",
+        "otherLanguages": "N/A",
+        "domains": [
+            "Call Center"
+        ],
+        "topics": [
+            "Others"
+        ],
+        "contentDurations": {
+            "Speech": 704.67,
+            "PII": 21.7,
+            "Babble": 7.98,
+            "Noise": 1.48,
+            "Audio": 742.32
+        },
+        "segments": [
+            {
+                "start": 0.49,
+                "end": 4.34,
+                "segmentId": "1",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_1",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "Thank you for calling concierge department. My name is Wendy. With whom do I have the pleasure of speaking with today?"
+                }
+            },
+            {
+                "start": 4.4,
+                "end": 6.42,
+                "segmentId": "2",
+                "primaryType": "PII",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_2",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "#[pii-name]"
+                }
+            },
+            {
+                "start": 6.46,
+                "end": 7.96,
+                "segmentId": "3",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_1",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "Hi, Jason, how are you doing today?"
+                }
+            },
+            {
+                "start": 8.04,
+                "end": 22.32,
+                "segmentId": "4",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_2",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "Oh not so good. I found out that #ah I'm not able to find any locations that are offering a rental car to throw in my One hundred dollars as bank balance I have ((Pennzoil)) I keep searching every single time What is it? But there's no results."
+                }
+            },
+            {
+                "start": 22.56,
+                "end": 36.78,
+                "segmentId": "5",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_2",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "So I think there's something wrong here, today I wanna know if it's possible I could use my #ah Pennzoil savings code somewhere else enabled, in order to rent a car that I don't find the booking website really reliable at all,"
+                }
+            },
+            {
+                "start": 36.86,
+                "end": 38.44,
+                "segmentId": "6",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_2",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "not really helping to get any cars."
+                }
+            },
+            {
+                "start": 38.54,
+                "end": 52.86,
+                "segmentId": "7",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_1",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "Okay, I understand where you're coming from. Really sorry about all the conveniences being caused. We can go ahead and do is that I could try to run the search in my end to see if I could get something there for you. #Um if not, but unfortunately, you cannot use your ((bento)) points anywhere else other than the websites there."
+                }
+            },
+            {
+                "start": 53.06,
+                "end": 60.44,
+                "segmentId": "8",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_2",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "Okay, well, I'm pretty sure something's wrong with the website because I'm not it's not getting any results. But anyway, no matter where I search."
+                }
+            },
+            {
+                "start": 60.54,
+                "end": 75.06,
+                "segmentId": "9",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_1",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "I'm really sorry, allow me to go ahead and try to run the search on my end #um, okay, but I would need a phone number that's associated with the account. Can you provide that over to me please? Okay, it doesn't seem that an account is being pulled up by that number #ah do you think it's associated with an email address you can provide me with please?"
+                }
+            },
+            {
+                "start": 75.26,
+                "end": 76.38,
+                "segmentId": "10",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_2",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "Yes, (())."
+                }
+            },
+            {
+                "start": 76.52,
+                "end": 85.98,
+                "segmentId": "11",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_1",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "Okay, one moment. Okay, perfect I was able to look at your account thank you for being a member of Central travel rewards allow me one moment let me go ahead and try to run the search,"
+                }
+            },
+            {
+                "start": 86.08,
+                "end": 91.42,
+                "segmentId": "12",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_1",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "#Uh can you further provide me the information for this car rental? Where will it be picked up and dropped off?"
+                }
+            },
+            {
+                "start": 91.48,
+                "end": 103.56,
+                "segmentId": "13",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_2",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "The series Auto series Auto Center in Antioch. Find out what options are available I want to find a car that's a sports car that I can rent for around Ninety to One hundred and twenty-one dollars for one day."
+                }
+            },
+            {
+                "start": 103.6,
+                "end": 105.56,
+                "segmentId": "14",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_1",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "For one day, what will be the specific date Sir?"
+                }
+            },
+            {
+                "start": 105.6,
+                "end": 106.08,
+                "segmentId": "15",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_2",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "Today."
+                }
+            },
+            {
+                "start": 106.14,
+                "end": 106.5,
+                "segmentId": "16",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_1",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "Today."
+                }
+            },
+            {
+                "start": 106.6,
+                "end": 109.18,
+                "segmentId": "17",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_2",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "The earliest possible times today."
+                }
+            },
+            {
+                "start": 109.3,
+                "end": 110.58,
+                "segmentId": "18",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_1",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "In Antioch, correct?"
+                }
+            },
+            {
+                "start": 110.62,
+                "end": 110.9,
+                "segmentId": "19",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_2",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "Correct."
+                }
+            },
+            {
+                "start": 110.96000000000001,
+                "end": 113.7,
+                "segmentId": "20",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_1",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "Allow me one moment. That's Antioch, California?"
+                }
+            },
+            {
+                "start": 113.74000000000001,
+                "end": 113.96000000000001,
+                "segmentId": "21",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_2",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "Yes."
+                }
+            },
+            {
+                "start": 114.03999999999999,
+                "end": 117.18,
+                "segmentId": "22",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_1",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "And when will the car be dropped off? Tomorrow, the eighteenth, correct?"
+                }
+            },
+            {
+                "start": 117.2,
+                "end": 117.53999999999999,
+                "segmentId": "23",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_2",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "Yes."
+                }
+            },
+            {
+                "start": 117.62,
+                "end": 119.16,
+                "segmentId": "24",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_1",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "Will you be picking up at noon?"
+                }
+            },
+            {
+                "start": 119.2,
+                "end": 119.92,
+                "segmentId": "25",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_2",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "Noon is fine."
+                }
+            },
+            {
+                "start": 120.0,
+                "end": 121.24,
+                "segmentId": "26",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_1",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "And dropping off the same time?"
+                }
+            },
+            {
+                "start": 121.28,
+                "end": 121.64,
+                "segmentId": "27",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_2",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "Right."
+                }
+            },
+            {
+                "start": 121.72,
+                "end": 130.78,
+                "segmentId": "28",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_1",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "Allow me one moment, yeah, so unfortunately I do see that it's given me the same error. It does say that everything is already sold out for the specific days that you are looking for."
+                }
+            },
+            {
+                "start": 130.82,
+                "end": 135.56,
+                "segmentId": "29",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_2",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "Yeah, but if you look at different time periods, it's gonna say the same thing no matter in in every location."
+                }
+            },
+            {
+                "start": 135.62,
+                "end": 147.2,
+                "segmentId": "30",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_1",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "Yeah, so I do see that being pulled up and trying different dates in different locations and I do see that everything is sold out as well #ah yeah, I don't see anything being pulled up there,"
+                }
+            },
+            {
+                "start": 147.32,
+                "end": 151.68,
+                "segmentId": "31",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_1",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "#Um allow me one moment let me see if I could find something in our back inventory for you, okay?"
+                }
+            },
+            {
+                "start": 151.72,
+                "end": 154.8,
+                "segmentId": "32",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_2",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "Yeah, the closest the, the closest location at Antioch."
+                }
+            },
+            {
+                "start": 154.84,
+                "end": 166.04,
+                "segmentId": "33",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_1",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "Okay, one moment here. I'm just trying to see if I could find something here, okay. #Um alright, #um okay, so I'm seeing here that for the dates you are looking for I have"
+                }
+            },
+            {
+                "start": 166.06,
+                "end": 172.32,
+                "segmentId": "34",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_1",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "a economy Chevrolet Spark, Ford Fiesta is similar. This is a Hertz, it says here"
+                }
+            },
+            {
+                "start": 172.4,
+                "end": 173.76,
+                "segmentId": "35",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_2",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "Which Hertz location?"
+                }
+            },
+            {
+                "start": 173.78,
+                "end": 182.18,
+                "segmentId": "36",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_1",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "All right, allow me one moment, let me try to get that is the only one that I see that is being picked up here #ah the only address that I have is"
+                }
+            },
+            {
+                "start": 182.2,
+                "end": 185.32,
+                "segmentId": "37",
+                "primaryType": "PII",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_1",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "#[pii-address]"
+                }
+            },
+            {
+                "start": 185.36,
+                "end": 187.16,
+                "segmentId": "38",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_1",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "That is the only thing that I see here."
+                }
+            },
+            {
+                "start": 187.2,
+                "end": 197.72,
+                "segmentId": "39",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_2",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "Okay, if I searched Concord myself maybe I could find that and look at it manually. Okay I'm searching right now and it says we're unable to find any available vehicles in Concord. Did you put a specific date or time or something?"
+                }
+            },
+            {
+                "start": 197.76,
+                "end": 204.54,
+                "segmentId": "40",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_1",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "Actually, like I said this is in our back inventory, so it's something that only the agents have access to, so this is"
+                }
+            },
+            {
+                "start": 204.57999999999998,
+                "end": 204.82,
+                "segmentId": "41",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_2",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "Okay."
+                }
+            },
+            {
+                "start": 204.84,
+                "end": 207.66,
+                "segmentId": "42",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_1",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "we see, yeah. So basically,"
+                }
+            },
+            {
+                "start": 207.72,
+                "end": 209.42000000000002,
+                "segmentId": "43",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_2",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "Can you give me the list of the offer?"
+                }
+            },
+            {
+                "start": 209.44,
+                "end": 218.5,
+                "segmentId": "44",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_1",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "Okay, so I have economy Chevrolet Spark, Ford Fiesta or similar this is what Hertz. I also have a compact car which is a Ford Focus, Nissan Versa or similar. This"
+                }
+            },
+            {
+                "start": 218.52,
+                "end": 220.1,
+                "segmentId": "45",
+                "primaryType": "Babble",
+                "loudnessLevel": "Normal"
+            },
+            {
+                "start": 220.18,
+                "end": 221.36,
+                "segmentId": "46",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_2",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "Can you go a little slower?"
+                }
+            },
+            {
+                "start": 221.7,
+                "end": 229.38,
+                "segmentId": "47",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_1",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "Okay, sorry about that. That is the compact Ford Focus, Nissan Versa or similar. This is to be picked up at"
+                }
+            },
+            {
+                "start": 229.4,
+                "end": 232.26,
+                "segmentId": "48",
+                "primaryType": "PII",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_1",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "#[pii-address]"
+                }
+            },
+            {
+                "start": 232.57999999999998,
+                "end": 243.88,
+                "segmentId": "49",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_1",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "As well, it says Twelve point Ninety-two miles from Antioch City center. I also have an economy Chevrolet Spark, Ford Fiesta or similar, again #ah to be picked up for by"
+                }
+            },
+            {
+                "start": 243.9,
+                "end": 247.1,
+                "segmentId": "50",
+                "primaryType": "PII",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_1",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "#[pii-address]"
+                }
+            },
+            {
+                "start": 247.14,
+                "end": 251.1,
+                "segmentId": "51",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_2",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "That location say it's closed. Can you look at the Hertz in Monument Boulevard?"
+                }
+            },
+            {
+                "start": 251.18,
+                "end": 251.94,
+                "segmentId": "52",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_2",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "#[overlap_start] Close. #[overlap_end]"
+                }
+            },
+            {
+                "start": 251.18,
+                "end": 251.94,
+                "segmentId": "53",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_1",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "#[overlap_start] Okay. #[overlap_end]"
+                }
+            },
+            {
+                "start": 252.0,
+                "end": 258.88,
+                "segmentId": "54",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_1",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "Okay, not a problem. So it says here closes at Twelve PM as well, so that will be the time that you will be picking up the car, Oh."
+                }
+            },
+            {
+                "start": 258.92,
+                "end": 260.62,
+                "segmentId": "55",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_2",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "Okay, so which which location?"
+                }
+            },
+            {
+                "start": 260.64,
+                "end": 269.64,
+                "segmentId": "56",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_1",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "close it seems that all of them close at Twelve PM and then there is no other one to be picked up somewhere else? Unfortunately Sir."
+                }
+            },
+            {
+                "start": 269.7,
+                "end": 272.14,
+                "segmentId": "57",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_2",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "Oh so I do have time left to pick it up."
+                }
+            },
+            {
+                "start": 272.18,
+                "end": 278.78,
+                "segmentId": "58",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_1",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "Okay, so all of them close at Twelve PM so I'm I don't know what time you're seeing now, but #ah"
+                }
+            },
+            {
+                "start": 278.86,
+                "end": 279.34000000000003,
+                "segmentId": "59",
+                "primaryType": "Babble",
+                "loudnessLevel": "Normal"
+            },
+            {
+                "start": 279.4,
+                "end": 282.8,
+                "segmentId": "60",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_2",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "I'm on Ten, my time now is Ten-twenty four AM"
+                }
+            },
+            {
+                "start": 282.82,
+                "end": 294.86,
+                "segmentId": "61",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_1",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "Okay, cuz I have Eleven twenty-four so it doesn't give me a specific time as well, timezone. It is. So it does says here at Twelve PM Nine AM to Twelve PM, California."
+                }
+            },
+            {
+                "start": 294.92,
+                "end": 297.76,
+                "segmentId": "62",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_2",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "So It's still open, the same location you're talking about."
+                }
+            },
+            {
+                "start": 297.86,
+                "end": 299.2,
+                "segmentId": "63",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_1",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "Yes, that will be #ah"
+                }
+            },
+            {
+                "start": 299.26,
+                "end": 303.98,
+                "segmentId": "64",
+                "primaryType": "PII",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_1",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "#[pii-address]"
+                }
+            },
+            {
+                "start": 304.1,
+                "end": 305.52,
+                "segmentId": "65",
+                "primaryType": "PII",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_2",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "#[pii-address]"
+                }
+            },
+            {
+                "start": 305.6,
+                "end": 307.2,
+                "segmentId": "66",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_1",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "Crow Canyon, it says here"
+                }
+            },
+            {
+                "start": 307.22,
+                "end": 309.52,
+                "segmentId": "67",
+                "primaryType": "PII",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_1",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "#[pii-address]"
+                }
+            },
+            {
+                "start": 309.62,
+                "end": 312.94,
+                "segmentId": "68",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_2",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "Wait a minute, I thought you said so none of the Concord locations are open right now?"
+                }
+            },
+            {
+                "start": 313.0,
+                "end": 315.5,
+                "segmentId": "69",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_1",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "No Sir unfortunately not. All of them are closed."
+                }
+            },
+            {
+                "start": 315.58,
+                "end": 322.06,
+                "segmentId": "70",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_2",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "And the only one is in Saloma. Okay, that's that's fine. Let me see what can you tell me the options available in that location?"
+                }
+            },
+            {
+                "start": 322.14,
+                "end": 337.06,
+                "segmentId": "71",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_1",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "#Um, okay, so for that one I have an economy Chevrolet Spark, Ford Fiesta are similar, that is the only one and then I have a compact car, which is also at the Crow Canyon for a Ford Focus, Nissan Versa similar as well."
+                }
+            },
+            {
+                "start": 337.15999999999997,
+                "end": 341.1,
+                "segmentId": "72",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_2",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "I'm looking for something around a hundred or hundred and between Ninety and One hundred and twenty dollars."
+                }
+            },
+            {
+                "start": 341.12,
+                "end": 341.9,
+                "segmentId": "73",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_1",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "Okay."
+                }
+            },
+            {
+                "start": 341.98,
+                "end": 345.84000000000003,
+                "segmentId": "74",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_2",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "San Ramon? Is that the only location where you're able to find anything near me?"
+                }
+            },
+            {
+                "start": 345.86,
+                "end": 355.92,
+                "segmentId": "75",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_1",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "Yeah, so like I said, everything else is already closed. The only one that will close at Twelve is the one in Crow Canyon place Santa Monica, California."
+                }
+            },
+            {
+                "start": 356.02,
+                "end": 361.26,
+                "segmentId": "76",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_2",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "Okay, so I have about thirty minutes to make I have about an hour over an hour (()) to make it over there. So"
+                }
+            },
+            {
+                "start": 361.34,
+                "end": 361.8,
+                "segmentId": "77",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_1",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "Yes."
+                }
+            },
+            {
+                "start": 361.86,
+                "end": 375.1,
+                "segmentId": "78",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_2",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "Can we #ah get, give me the list of #ah cars that have a six cylinder, eight cylinder I'm Look, I'm only interested I'm not interested in economy car. So you could avoid that, but I just want to make sure"
+                }
+            },
+            {
+                "start": 375.18,
+                "end": 381.02,
+                "segmentId": "79",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_2",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "you have, give me a list of cars that are between Eighty to One hundred and twenty dollars and I could rent for one day."
+                }
+            },
+            {
+                "start": 381.06,
+                "end": 381.26,
+                "segmentId": "80",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_1",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "Alright."
+                }
+            },
+            {
+                "start": 381.3,
+                "end": 383.62,
+                "segmentId": "81",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_2",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "And starting with the most expensive one."
+                }
+            },
+            {
+                "start": 383.64,
+                "end": 395.92,
+                "segmentId": "82",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_1",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "Okay, allow me one moment. So for the prices that I see here on my end, I do see that they are a bit cheap, so I'm just trying to see more or less the information that I could go ahead and give out to you."
+                }
+            },
+            {
+                "start": 395.94,
+                "end": 399.56,
+                "segmentId": "83",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_2",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "Okay, that's fine. I mean if you could start from the most expensive one, top to bottom."
+                }
+            },
+            {
+                "start": 399.6,
+                "end": 408.56,
+                "segmentId": "84",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_1",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "Okay, okay so I have here a #ah one ~ a premium, Buick Regal, Regal or similar. This is"
+                }
+            },
+            {
+                "start": 408.58,
+                "end": 409.22,
+                "segmentId": "85",
+                "primaryType": "Babble",
+                "loudnessLevel": "Normal"
+            },
+            {
+                "start": 409.28,
+                "end": 412.26,
+                "segmentId": "86",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_2",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "Wait, can you go slower? I want to type it down. Buick Regal"
+                }
+            },
+            {
+                "start": 412.3,
+                "end": 413.02,
+                "segmentId": "87",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_1",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "or similar."
+                }
+            },
+            {
+                "start": 413.02,
+                "end": 414.42,
+                "segmentId": "88",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_2",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "What, what type of Buick Regal is it?"
+                }
+            },
+            {
+                "start": 414.54,
+                "end": 419.56,
+                "segmentId": "89",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_1",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "It just as premium Buick Regal or similar, that is the car type there, it doesn't really"
+                }
+            },
+            {
+                "start": 419.56,
+                "end": 420.94,
+                "segmentId": "90",
+                "primaryType": "Babble",
+                "loudnessLevel": "Normal"
+            },
+            {
+                "start": 420.96,
+                "end": 426.92,
+                "segmentId": "91",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_2",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "Okay, oh I see, so I see what you mean, Twenty-seventeen Buick Regal Turbo Premium?"
+                }
+            },
+            {
+                "start": 426.92,
+                "end": 428.28,
+                "segmentId": "92",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_1",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "#Ah yeah."
+                }
+            },
+            {
+                "start": 428.32,
+                "end": 429.82,
+                "segmentId": "93",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_2",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "Okay, and how much is that for?"
+                }
+            },
+            {
+                "start": 430.04,
+                "end": 433.5,
+                "segmentId": "94",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_1",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "Okay, so this one is for Ninety-seven dollars total."
+                }
+            },
+            {
+                "start": 433.5,
+                "end": 436.92,
+                "segmentId": "95",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_2",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "I'm not interested in that one, can you go on to the next one?"
+                }
+            },
+            {
+                "start": 436.92,
+                "end": 442.6,
+                "segmentId": "96",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_1",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "#Um okay. I have a luxury Chrysler Three hundred or similar."
+                }
+            },
+            {
+                "start": 442.62,
+                "end": 443.22,
+                "segmentId": "97",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_2",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "And how much is that?"
+                }
+            },
+            {
+                "start": 443.22,
+                "end": 444.86,
+                "segmentId": "98",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_1",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "This is for eighty total."
+                }
+            },
+            {
+                "start": 444.86,
+                "end": 445.38,
+                "segmentId": "99",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_2",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "What year?"
+                }
+            },
+            {
+                "start": 445.4,
+                "end": 451.64,
+                "segmentId": "100",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_1",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "Okay, this one does not specify which year it is exactly, it just gives me the equivalent Three hundred or similar."
+                }
+            },
+            {
+                "start": 451.64,
+                "end": 456.26,
+                "segmentId": "101",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_2",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "Okay, so what, what, will you find out? If I booked that one? Can you find out?"
+                }
+            },
+            {
+                "start": 456.28,
+                "end": 461.58,
+                "segmentId": "102",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_1",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "#Ah for that, that will have to be directly with the agency and I would have to give them a call to see."
+                }
+            },
+            {
+                "start": 461.62,
+                "end": 467.65999999999997,
+                "segmentId": "103",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_2",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "Okay, can you find out if any of those locations open tomorrow? (()) If not, I'll just book it today."
+                }
+            },
+            {
+                "start": 467.9,
+                "end": 472.64,
+                "segmentId": "104",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_1",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "Mm okay, okay. Is it okay if I place you on a brief hold while I try to see if I can get some information there?"
+                }
+            },
+            {
+                "start": 472.64,
+                "end": 473.3,
+                "segmentId": "105",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_2",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "Yeah."
+                }
+            },
+            {
+                "start": 473.3,
+                "end": 474.78,
+                "segmentId": "106",
+                "primaryType": "Noise",
+                "loudnessLevel": "Normal"
+            },
+            {
+                "start": 474.78,
+                "end": 478.74,
+                "segmentId": "107",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_3",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "Good morning! Thank you for calling Hertz Car Ramon. My name is Patty. How can I help you?"
+                }
+            },
+            {
+                "start": 478.74,
+                "end": 481.02,
+                "segmentId": "108",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_1",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "Hi Patty, this is Wendy calling from"
+                }
+            },
+            {
+                "start": 481.02,
+                "end": 483.08,
+                "segmentId": "109",
+                "primaryType": "PII",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_1",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "#[pii-work]"
+                }
+            },
+            {
+                "start": 483.46,
+                "end": 497.46,
+                "segmentId": "110",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_1",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "I just have a question about a car here. I wanted to know more or less about the luxury car. This one is for a, allow me to get you that specific information there. This is the Chrysler Three hundred or similar. I just wanted to know more or less what year this is."
+                }
+            },
+            {
+                "start": 497.6,
+                "end": 498.96,
+                "segmentId": "111",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_3",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "Are you in the rental right now?"
+                }
+            },
+            {
+                "start": 498.96,
+                "end": 508.44,
+                "segmentId": "112",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_1",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "#Ah no, but I'm actually trying to place a reservation for one of my clients but he wants to know #ah the exact year of this luxury Chrysler Three hundred."
+                }
+            },
+            {
+                "start": 508.44,
+                "end": 522.26,
+                "segmentId": "113",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_3",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "Oh okay, let me check that for you. I'm gonna ~ Chrysler Three hundred, Chrysler Three hundred is we don't have one right now, but most of our cars are our, our new we don't have a Chrysler Three hundred right now."
+                }
+            },
+            {
+                "start": 522.28,
+                "end": 525.76,
+                "segmentId": "114",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_1",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "Okay, so if I placed this reservation for today, it wouldn't be available?"
+                }
+            },
+            {
+                "start": 525.76,
+                "end": 528.56,
+                "segmentId": "115",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_3",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "No, it would not. We don't have a Chrysler Three hundred."
+                }
+            },
+            {
+                "start": 528.56,
+                "end": 528.84,
+                "segmentId": "116",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_1",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "Okay"
+                }
+            },
+            {
+                "start": 528.88,
+                "end": 530.06,
+                "segmentId": "117",
+                "primaryType": "Babble",
+                "loudnessLevel": "Normal"
+            },
+            {
+                "start": 530.06,
+                "end": 530.7,
+                "segmentId": "118",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_3",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "to Three hundred"
+                }
+            },
+            {
+                "start": 530.76,
+                "end": 532.12,
+                "segmentId": "119",
+                "primaryType": "Babble",
+                "loudnessLevel": "Normal"
+            },
+            {
+                "start": 532.16,
+                "end": 532.82,
+                "segmentId": "120",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_3",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "excuse me?"
+                }
+            },
+            {
+                "start": 532.86,
+                "end": 535.0,
+                "segmentId": "121",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_1",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "(()) #[overlap_start] Ma'am yeah? #[overlap_end].how can I help you?"
+                }
+            },
+            {
+                "start": 532.86,
+                "end": 535.0,
+                "segmentId": "122",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_3",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "#[overlap_start] Ma'am #[overlap_end] how can I help you?"
+                }
+            },
+            {
+                "start": 535.0,
+                "end": 544.1,
+                "segmentId": "123",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_1",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "Okay, I just wanted to know, more or less what cars are available at the moment because he needs to pick this car up today and I see that you guys are closing at Twelve PM"
+                }
+            },
+            {
+                "start": 544.12,
+                "end": 544.54,
+                "segmentId": "124",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_3",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "Yes."
+                }
+            },
+            {
+                "start": 544.54,
+                "end": 546.02,
+                "segmentId": "125",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_3",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "so he needs a luxury car?"
+                }
+            },
+            {
+                "start": 546.02,
+                "end": 557.74,
+                "segmentId": "126",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_1",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "He said he just wants to know more. He was interested in this one but you said that they're not really available at the moment. So I don't want to go ahead and place that and that when he arrives it's not there. So more or less what are the cars that you have available?"
+                }
+            },
+            {
+                "start": 557.76,
+                "end": 559.38,
+                "segmentId": "127",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_3",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "#Um I'm gonna put you on a brief hold."
+                }
+            },
+            {
+                "start": 559.38,
+                "end": 559.68,
+                "segmentId": "128",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_1",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "Okay."
+                }
+            },
+            {
+                "start": 559.68,
+                "end": 568.02,
+                "segmentId": "129",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_3",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "Right now we are waiting on return, we don't have anything available right at the moment. Would you like me to take your name and number and call you when something comes available?"
+                }
+            },
+            {
+                "start": 568.02,
+                "end": 582.9,
+                "segmentId": "130",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_1",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "#Um all right, so is it okay if I give you guys a call back because nor he said that he needs the car today, so more or less in about an hour. So I'll go ahead and and send him this information just to inform him that I don't see that there's anything available"
+                }
+            },
+            {
+                "start": 582.9,
+                "end": 590.64,
+                "segmentId": "131",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_1",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "at the moment directly with you guys. And I'll see what I can fix with him. Okay, then if he decides,I can give you guys a call back. Thank you very much."
+                }
+            },
+            {
+                "start": 590.64,
+                "end": 592.0,
+                "segmentId": "132",
+                "primaryType": "Babble",
+                "loudnessLevel": "Normal"
+            },
+            {
+                "start": 592.1,
+                "end": 593.26,
+                "segmentId": "133",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_1",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "Bye bye. #[beep] Hello?"
+                }
+            },
+            {
+                "start": 593.26,
+                "end": 593.94,
+                "segmentId": "134",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_2",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "Yes, I'm here."
+                }
+            },
+            {
+                "start": 593.94,
+                "end": 608.42,
+                "segmentId": "135",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_1",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "Thank you for holding, okay, so I just got in contact with the agency and they explained that there are no cars available at the moment, and that is why we were seeing that there is nothing available #uh neither for any dates"
+                }
+            },
+            {
+                "start": 608.7,
+                "end": 623.56,
+                "segmentId": "136",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_1",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "on the website since it is, you know, close to California with the same agency. So they told me that there is nothing available and they're waiting on returns. So if we go ahead and book with Hertz, that would not be possible there since that is the only one that I'm seeing that is available"
+                }
+            },
+            {
+                "start": 623.56,
+                "end": 626.54,
+                "segmentId": "137",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_1",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "at the moment here for the specific location and date."
+                }
+            },
+            {
+                "start": 626.68,
+                "end": 629.3,
+                "segmentId": "138",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_2",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "Okay, so can I go ahead and book with them for the Chrysler Three hundred?"
+                }
+            },
+            {
+                "start": 629.38,
+                "end": 644.26,
+                "segmentId": "139",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_1",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "Okay, so like I said, if I if you go ahead, and like I said, there is no car available, and the luxury Chrysler isn't available, as well as for what she just told me. So it wouldn't really be recommended to go ahead and place a reservation for today or either tomorrow because"
+                }
+            },
+            {
+                "start": 644.56,
+                "end": 650.72,
+                "segmentId": "140",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_1",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "it would not be available now since they are just waiting on returns at the moment. They don't have any cars available."
+                }
+            },
+            {
+                "start": 650.72,
+                "end": 657.78,
+                "segmentId": "141",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_2",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "(()) can you find out can you do some more searching to see if there's any other locations besides Hertz that have cars?"
+                }
+            },
+            {
+                "start": 657.78,
+                "end": 660.62,
+                "segmentId": "142",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_1",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "Okay, allow me one moment then. Sir, are you there?"
+                }
+            },
+            {
+                "start": 660.62,
+                "end": 661.2,
+                "segmentId": "143",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_2",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "Yes."
+                }
+            },
+            {
+                "start": 661.2,
+                "end": 675.8,
+                "segmentId": "144",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_1",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "All right, perfect #ah. It seems that for the dates that you looking for since it would be from today to tomorrow, or either tomorrow or you know, the Nineteenth it really does tell me that there is nothing available for the dates that you are looking for, or these"
+                }
+            },
+            {
+                "start": 675.8,
+                "end": 688.58,
+                "segmentId": "145",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_1",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "#ah specific locations. I already tried Antioch, Concord, and I don't see anything being pulled up there for the dates that you are requesting to have this car. And everything that I try says that they are already sold out."
+                }
+            },
+            {
+                "start": 688.58,
+                "end": 694.22,
+                "segmentId": "146",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_2",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "Okay can you find out if there's any location close to me, in Concord or any other city near me, for tomorrow?"
+                }
+            },
+            {
+                "start": 694.22,
+                "end": 702.44,
+                "segmentId": "147",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_1",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "Sure, okay, I'm trying everything in California. And it doesn't seem that every anything is giving me a location there. I've tried #ah"
+                }
+            },
+            {
+                "start": 702.5,
+                "end": 703.8,
+                "segmentId": "148",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_2",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "Okay, what about to Monday?"
+                }
+            },
+            {
+                "start": 703.84,
+                "end": 716.32,
+                "segmentId": "149",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_1",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "I've been changing the data. And I don't see that there is nothing available. All of it tells me that they're sold out for any dates, because I've tried from the seventeen up to the twenty nine. And I don't see any availability."
+                }
+            },
+            {
+                "start": 716.32,
+                "end": 729.54,
+                "segmentId": "150",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_2",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "Yeah but when I look directly at the website for different (()) website, it says there is availability, but most likely related to (()) at all."
+                }
+            },
+            {
+                "start": 729.54,
+                "end": 738.06,
+                "segmentId": "151",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_1",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "Yeah, well, like I said, I'm actually not specifically on the website. I'm in my back inventory and I still don't see that there is nothing available."
+                }
+            },
+            {
+                "start": 738.06,
+                "end": 738.64,
+                "segmentId": "152",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_1",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "Hello?"
+                }
+            },
+            {
+                "start": 738.64,
+                "end": 741.82,
+                "segmentId": "153",
+                "primaryType": "Speech",
+                "loudnessLevel": "Normal",
+                "language": [
+                    "en_US"
+                ],
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_1",
+                "discarded": false,
+                "is_valid": true,
+                "transcriptionData": {
+                    "content": "Hello? For quality assurance and training purposes, I'll be disconnecting this call."
+                }
+            }
+        ],
+        "speakers": [
+            {
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_1",
+                "gender": "Female",
+                "genderSource": "AnnotatorIdentified",
+                "nativity": "Native",
+                "nativitySource": "AnnotatorIdentified",
+                "role": "Agent",
+                "roleSource": "AnnotatorIdentified",
+                "languages": [
+                    "en_US"
+                ]
+            },
+            {
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_2",
+                "gender": "Male",
+                "genderSource": "AnnotatorIdentified",
+                "nativity": "Native",
+                "nativitySource": "AnnotatorIdentified",
+                "role": "Customer",
+                "roleSource": "AnnotatorIdentified",
+                "languages": [
+                    "en_US"
+                ]
+            },
+            {
+                "speakerId": "en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac_3",
+                "gender": "Female",
+                "genderSource": "AnnotatorIdentified",
+                "nativity": "Native",
+                "nativitySource": "AnnotatorIdentified",
+                "role": "Agent",
+                "roleSource": "AnnotatorIdentified",
+                "languages": [
+                    "en_US"
+                ]
+            }
+        ],
+        "annotatorInfo": {
+            "LoginEncrypted": "N/A",
+            "annotatorID": "N/A",
+            "QATaskID": "N/A",
+            "QATaskStatus": "N/A"
+        },
+        "taskStatus": {
+            "segmentation": {
+                "workflowStatus": "COMPLETE",
+                "workflowType": "LABEL"
+            },
+            "speakerId": {
+                "workflowStatus": "COMPLETE",
+                "workflowType": "LABEL"
+            },
+            "transcription": {
+                "workflowStatus": "COMPLETE",
+                "workflowType": "LABEL"
+            }
+        },
+        "conventionInfo": {
+            "masterConventionName": "",
+            "customAddendum": ""
+        }
+    }
+}

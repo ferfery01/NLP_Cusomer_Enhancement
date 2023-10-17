@@ -4,4 +4,6 @@ torch==2.0.1; sys_platform == "darwin"
 torch==2.0.1+cu118; sys_platform == "linux"
 
 # === Install all other dependencies ===
+openai-whisper==20230918
 pandas==2.1.1
+rich==13.6.0

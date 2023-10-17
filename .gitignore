@@ -55,6 +55,16 @@ data/
 *.jpeg
 *.png
 
+# Text
+*.json
+*.srt
+*.tsv
+*.vtt
+
+# Audio
+*.wav
+*.mp3
+
 # local_example
 examples/
 
