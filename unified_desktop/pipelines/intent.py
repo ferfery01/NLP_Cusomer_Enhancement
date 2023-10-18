@@ -1,9 +1,10 @@
-from pathlib import Path
-from typing import Any, Union, Optional
+from typing import Optional, Union
 
 import torch
 from transformers import pipeline
+
 from unified_desktop.pipelines.base import UDBase
+
 
 class UDIntentClassification(UDBase):
     def __init__(
@@ -29,7 +30,6 @@ class UDIntentClassification(UDBase):
     def _predict(self, input_text, **kwargs):
         cls_output = self.model(input_text, **kwargs)
         return cls_output
-
 
     def _postprocess(self, predictions):
         results = []
