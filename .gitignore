@@ -39,7 +39,7 @@ MANIFEST
 **/mypy_cache/**
 
 # Checkpoints
-**/checkpoints/**
+**/*checkpoints/**
 *.pt*
 **/wandb/**
 
