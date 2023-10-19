@@ -26,7 +26,7 @@ class EmotionPredictions(NamedTuple):
     """
 
 
-class UDSpeechEmotionRecognition(UDBase):
+class UDSpeechEmotionRecognizer(UDBase):
     """Detect emotions in speech using SpeechBrain's emotion recognition model.
 
     Currently, the model predicts one of the following emotion: Anger, Happy, Neutral, Sad
