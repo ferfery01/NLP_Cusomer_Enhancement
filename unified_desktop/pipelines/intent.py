@@ -19,6 +19,7 @@ class UDIntentClassification(UDBase):
         self,
         name: str = "vineetsharma/customer-support-intent-albert",
         device: Optional[Union[str, torch.device]] = None,
+        available_models: List[str] = [],
     ):
         """
         Initialize the UDIntentClassification class.
@@ -26,22 +27,23 @@ class UDIntentClassification(UDBase):
         Args:
             name (str): The name of the ALBERT model to use.
             device (Union[str, torch.device, None]):
-            The device to run the model on.
-            The device can be specified as a string, a torch.device,
-            or left as None to use the default device.
+            The device to run the model on. The device can be
+            specified as a string, a torch.device, or left
+            as None to use the default device.
         """
         self.name = name
+        self.available_models = available_models
         super().__init__(device=device)
 
-    def _validate_args(self):
+    def _validate_args(self) -> None:
         """
         Validate the provided arguments.
 
         Raises:
             ValueError: If the model name is None.
         """
-        if self.name is None:
-            raise ValueError(f"Model {self.name} not found")
+        if self.name not in self.available_models:
+            raise ValueError(f"Model {self.name} not found; available models: {self.available_models}")
 
     def _load_model(self) -> None:
         """
@@ -61,44 +63,44 @@ class UDIntentClassification(UDBase):
         """
         return input_text
 
-    def _predict(self, input_text: str, **kwargs) -> List[Any | None]:
+    def _predict(self, input_text: str) -> List[Any | None]:
         """
         Predict the intent of the input text.
 
         Args:
             input_text: The input text for intent classification.
-            **kwargs: Additional keyword arguments.
 
         Returns:
             list[Any | None]: A list of classification results.
         """
-        cls_output = self.model(input_text, **kwargs)
+        cls_output = self.model(input_text)
         return cls_output
 
-    def _postprocess(self, predictions) -> List[Tuple[List[str], List[float]]]:
+    def _postprocess(self, predictions, top_k: int) -> List[Tuple[List[str], List[float]]]:
         """
         Postprocess the classification predictions.
 
         Args:
             predictions: The raw classification predictions.
+            top_k: Number of top brobability predictions
 
         Returns:
             List[Tuple[Any, Any]]: A list of tuples containing intent class and confidence score.
         """
-        results = [(prediction["label"], prediction["score"]) for prediction in predictions[0]]
+        results = [(prediction["label"], prediction["score"]) for prediction in predictions[0][:top_k]]
         return results
 
-    def __call__(self, input_text: str, kwargs: Any) -> List[Tuple[List[str], List[float]]]:
+    def __call__(self, input_text: str, top_k: int) -> List[Tuple[List[str], List[float]]]:
         """
         Make an intent classification prediction.
 
         Args:
             input_text: The input text for intent classification.
-            **kwargs: Additional keyword arguments.
+            top_k: Number of top brobability predictions
 
         Returns:
             List[Tuple[List[str], List[float]]]: A list of tuples containing intent class and confidence score.
         """
         input_text = self._preprocess(input_text)
-        predictions = self._predict(input_text, **kwargs)
-        return self._postprocess(predictions)
+        predictions = self._predict(input_text)
+        return self._postprocess(predictions, top_k)
