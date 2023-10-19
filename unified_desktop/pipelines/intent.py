@@ -1,9 +1,16 @@
-from typing import Any, List, Optional, Tuple, Union
+from typing import ClassVar, List, Optional, TypedDict, Union
 
 import torch
 from transformers import pipeline
 
 from unified_desktop.pipelines.base import UDBase
+
+
+class IntentPredictions(TypedDict):
+    """The predictions from the Whisper ASR model."""
+
+    label: str
+    score: float
 
 
 class UDIntentClassification(UDBase):
@@ -15,11 +22,12 @@ class UDIntentClassification(UDBase):
     Goal: Detect the intent of the customers using their text queries.
     """
 
+    available_models: ClassVar[List[str]] = ["vineetsharma/customer-support-intent-albert", "albert-base-v2"]
+
     def __init__(
         self,
         name: str = "vineetsharma/customer-support-intent-albert",
         device: Optional[Union[str, torch.device]] = None,
-        available_models: List[str] = [],
     ):
         """
         Initialize the UDIntentClassification class.
@@ -32,7 +40,6 @@ class UDIntentClassification(UDBase):
             as None to use the default device.
         """
         self.name = name
-        self.available_models = available_models
         super().__init__(device=device)
 
     def _validate_args(self) -> None:
@@ -63,7 +70,7 @@ class UDIntentClassification(UDBase):
         """
         return input_text
 
-    def _predict(self, input_text: str) -> List[Any | None]:
+    def _predict(self, input_text: str) -> List[IntentPredictions]:
         """
         Predict the intent of the input text.
 
@@ -71,12 +78,12 @@ class UDIntentClassification(UDBase):
             input_text: The input text for intent classification.
 
         Returns:
-            list[Any | None]: A list of classification results.
+            classification results.
         """
         cls_output = self.model(input_text)
-        return cls_output
+        return cls_output[0]
 
-    def _postprocess(self, predictions, top_k: int) -> List[Tuple[List[str], List[float]]]:
+    def _postprocess(self, predictions: List[IntentPredictions], top_k: int) -> List[IntentPredictions]:
         """
         Postprocess the classification predictions.
 
@@ -85,12 +92,11 @@ class UDIntentClassification(UDBase):
             top_k: Number of top brobability predictions
 
         Returns:
-            List[Tuple[Any, Any]]: A list of tuples containing intent class and confidence score.
+            A list of tuples containing intent class and confidence score.
         """
-        results = [(prediction["label"], prediction["score"]) for prediction in predictions[0][:top_k]]
-        return results
+        return predictions[:top_k]
 
-    def __call__(self, input_text: str, top_k: int) -> List[Tuple[List[str], List[float]]]:
+    def __call__(self, input_text: str, top_k: int) -> List[IntentPredictions]:
         """
         Make an intent classification prediction.
 
