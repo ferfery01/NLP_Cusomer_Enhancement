@@ -75,7 +75,7 @@ class UDIntentClassification(UDBase):
         cls_output = self.model(input_text, **kwargs)
         return cls_output
 
-    def _postprocess(self, predictions) -> List[Tuple[Any, Any]]:
+    def _postprocess(self, predictions) -> List[Tuple[List[str], List[float]]]:
         """
         Postprocess the classification predictions.
 
@@ -88,7 +88,7 @@ class UDIntentClassification(UDBase):
         results = [(prediction["label"], prediction["score"]) for prediction in predictions[0]]
         return results
 
-    def __call__(self, input_text: str, kwargs: Any) -> List[Tuple[Any, Any]]:
+    def __call__(self, input_text: str, kwargs: Any) -> List[Tuple[List[str], List[float]]]:
         """
         Make an intent classification prediction.
 
@@ -97,7 +97,7 @@ class UDIntentClassification(UDBase):
             **kwargs: Additional keyword arguments.
 
         Returns:
-            List[Tuple[Any, Any]]: A list of tuples containing intent class and confidence score.
+            List[Tuple[List[str], List[float]]]: A list of tuples containing intent class and confidence score.
         """
         input_text = self._preprocess(input_text)
         predictions = self._predict(input_text, **kwargs)
