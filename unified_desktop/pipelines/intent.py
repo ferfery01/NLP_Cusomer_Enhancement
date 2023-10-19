@@ -29,7 +29,6 @@ class UDIntentClassification(UDBase):
             The device to run the model on.
             The device can be specified as a string, a torch.device,
             or left as None to use the default device.
-
         """
         self.name = name
         super().__init__(device=device)
@@ -44,13 +43,13 @@ class UDIntentClassification(UDBase):
         if self.name is None:
             raise ValueError(f"Model {self.name} not found")
 
-    def _load_model(self):
+    def _load_model(self) -> None:
         """
         Load the ALBERT model for text classification.
         """
         self.model = pipeline("text-classification", model=self.name, top_k=None)
 
-    def _preprocess(self, input_text) -> str:
+    def _preprocess(self, input_text: str) -> str:
         """
         Preprocess the input text.
 
@@ -60,9 +59,9 @@ class UDIntentClassification(UDBase):
         Returns:
             str: The preprocessed input text as a string.
         """
-        return str(input_text)
+        return input_text
 
-    def _predict(self, input_text, **kwargs) -> List[Any | None]:
+    def _predict(self, input_text: str, **kwargs) -> List[Any | None]:
         """
         Predict the intent of the input text.
 
@@ -86,14 +85,10 @@ class UDIntentClassification(UDBase):
         Returns:
             List[Tuple[Any, Any]]: A list of tuples containing intent class and confidence score.
         """
-        results = []
-        for prediction in predictions[0]:
-            intent_class = prediction["label"]
-            intent_score = prediction["score"]
-            results.append((intent_class, intent_score))
+        results = [(prediction["label"], prediction["score"]) for prediction in predictions[0]]
         return results
 
-    def __call__(self, input_text, **kwargs) -> List[Tuple[Any, Any]]:
+    def __call__(self, input_text: str, kwargs: Any) -> List[Tuple[Any, Any]]:
         """
         Make an intent classification prediction.
 
