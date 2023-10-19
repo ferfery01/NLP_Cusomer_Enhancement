@@ -40,6 +40,11 @@ class UDSpeechEmotionRecognizer(UDBase):
     def __init__(self, device: Optional[Union[str, torch.device]] = None) -> None:
         super().__init__(device=device)
 
+    def _validate_args(self) -> None:
+        """Validate the arguments passed to the constructor."""
+        if self.device == torch.device("mps"):
+            raise ValueError("SER does not support MPS. Please use another device.")
+
     def _load_model(self) -> None:
         """Load the speech emotion recognition model."""
         self.model = foreign_class(

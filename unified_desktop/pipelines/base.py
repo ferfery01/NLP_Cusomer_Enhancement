@@ -29,7 +29,7 @@ class UDBase(ABC):
             device (Union[str, torch.device], optional): Specifies the PyTorch device for running the model.
             Defaults to the best available device.
         """
-        self.device = device if device else get_best_available_device()
+        self.device = torch.device(device) if device else get_best_available_device()
 
         self._validate_args()
         self._load_model()
