@@ -49,6 +49,7 @@ repos:
             args: [--py310-plus]
           - id: nbqa-isort
             args:
+                - --profile=black
                 - --float-to-top
     - repo: https://github.com/jumanjihouse/pre-commit-hook-yamlfmt
       rev: 0.2.3

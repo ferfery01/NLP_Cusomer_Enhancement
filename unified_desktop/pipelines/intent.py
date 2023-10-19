@@ -17,22 +17,21 @@ class UDIntentClassification(UDBase):
 
     def __init__(
         self,
-        task: Optional[str] = None,
         name: str = "vineetsharma/customer-support-intent-albert",
-        device: Union[str, torch.device, None] = None,
+        device: Optional[Union[str, torch.device]] = None,
     ):
         """
         Initialize the UDIntentClassification class.
 
         Args:
-            task (Optional[str]): An optional task description.
             name (str): The name of the ALBERT model to use.
-            device (Union[str, torch.device, None]): The device to run the model on.
+            device (Union[str, torch.device, None]):
+            The device to run the model on.
+            The device can be specified as a string, a torch.device,
+            or left as None to use the default device.
 
-        The device can be specified as a string, a torch.device, or left as None to use the default device.
         """
         self.name = name
-        self.task = task
         super().__init__(device=device)
 
     def _validate_args(self):
