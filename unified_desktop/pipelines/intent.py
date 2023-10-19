@@ -105,7 +105,7 @@ class UDIntentClassification(UDBase):
             top_k: Number of top brobability predictions
 
         Returns:
-            List[Tuple[List[str], List[float]]]: A list of tuples containing intent class and confidence score.
+            A list of dictionaries containing intent label and score.
         """
         input_text = self._preprocess(input_text)
         predictions = self._predict(input_text)
