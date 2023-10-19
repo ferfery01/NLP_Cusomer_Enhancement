@@ -22,6 +22,11 @@ class UDIntentClassification(UDBase):
     Goal: Detect the intent of the customers using their text queries.
     """
 
+    """
+    available_models are the list of all transformer models
+    that works well for the IntentDetection purpose.
+    More will be added to the list after testing each one.
+    """
     available_models: ClassVar[List[str]] = ["vineetsharma/customer-support-intent-albert"]
 
     def __init__(
