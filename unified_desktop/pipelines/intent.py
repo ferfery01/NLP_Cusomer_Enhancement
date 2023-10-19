@@ -22,7 +22,7 @@ class UDIntentClassification(UDBase):
     Goal: Detect the intent of the customers using their text queries.
     """
 
-    available_models: ClassVar[List[str]] = ["vineetsharma/customer-support-intent-albert", "albert-base-v2"]
+    available_models: ClassVar[List[str]] = ["vineetsharma/customer-support-intent-albert"]
 
     def __init__(
         self,
