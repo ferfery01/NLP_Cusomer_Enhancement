@@ -13,7 +13,7 @@ class IntentPredictions(TypedDict):
     score: float
 
 
-class UDIntentClassification(UDBase):
+class UDIntentClassifier(UDBase):
     """
     This class is used for intent classification using the ALBERT model.
 
@@ -35,7 +35,7 @@ class UDIntentClassification(UDBase):
         device: Optional[Union[str, torch.device]] = None,
     ):
         """
-        Initialize the UDIntentClassification class.
+        Initialize the UDIntentClassifier class.
 
         Args:
             name (str): The name of the ALBERT model to use.
