@@ -8,3 +8,4 @@ openai-whisper==20230918
 pandas==2.1.1
 rich==13.6.0
 speechbrain==0.5.15
+transformers==4.34.0
