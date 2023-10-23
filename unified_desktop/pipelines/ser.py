@@ -10,7 +10,7 @@ from unified_desktop.pipelines.base import UDBase
 
 logger = setup_logger()
 
-EMOTIONS_MAP: Mapping[str, str] = {"ang": "Anger", "hap": "Happy", "neu": "Neutral", "sad": "Sad"}
+EMOTIONS_MAP: Mapping[str, str] = {"ang": "😡", "hap": "😀", "neu": "😐", "sad": "😞"}
 """A mapping from the emotion labels to the corresponding human-readable labels.
 """
 
@@ -59,8 +59,8 @@ class UDSpeechEmotionRecognizer(UDBase):
 
         # Need to set the device manually so that input tensors are on the correct device
         self.model.device = self.device
-        logger.info(f"Loaded SpeechBrain emotion recognition model on {self.device}")
         self.model.eval()
+        logger.info(f"Loaded SpeechBrain emotion recognition (SER) model on {self.device}")
 
     def _preprocess(self, audio_file: Union[str, Path]) -> str:
         """Convert the audio file path to a string."""
