@@ -5,7 +5,10 @@ import torch
 from speechbrain.pretrained.interfaces import foreign_class
 
 from unified_desktop import CACHE_DIR
+from unified_desktop.core.utils.logging import setup_logger
 from unified_desktop.pipelines.base import UDBase
+
+logger = setup_logger()
 
 EMOTIONS_MAP: Mapping[str, str] = {"ang": "Anger", "hap": "Happy", "neu": "Neutral", "sad": "Sad"}
 """A mapping from the emotion labels to the corresponding human-readable labels.
@@ -53,6 +56,10 @@ class UDSpeechEmotionRecognizer(UDBase):
             classname="CustomEncoderWav2vec2Classifier",
             savedir=CACHE_DIR,
         ).to(self.device)
+
+        # Need to set the device manually so that input tensors are on the correct device
+        self.model.device = self.device
+        logger.info(f"Loaded SpeechBrain emotion recognition model on {self.device}")
         self.model.eval()
 
     def _preprocess(self, audio_file: Union[str, Path]) -> str:
