@@ -10,7 +10,7 @@ from unified_desktop.pipelines.base import UDBase
 
 logger = setup_logger()
 
-EMOTIONS_MAP: Mapping[str, str] = {"ang": "😡", "hap": "😀", "neu": "😐", "sad": "😞"}
+EMOTIONS_MAP: Mapping[str, str] = {"neu": "😐", "ang": "😡", "hap": "😀", "sad": "😞"}
 """A mapping from the emotion labels to the corresponding human-readable labels.
 """
 
