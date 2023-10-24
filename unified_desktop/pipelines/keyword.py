@@ -61,7 +61,9 @@ class UDKeyExtraction(UDBase):
         """
         Load the ALBERT model for text classification.
         """
-        self.model = pipeline("text-classification", model=self.name, top_k=None, device=self.device)
+        # Use a pipeline as a high-level helper
+
+        self.model = pipeline("token-classification", model=self.name, device=self.device)
 
     def _preprocess(self, input_text: str) -> str:
         """
@@ -75,7 +77,7 @@ class UDKeyExtraction(UDBase):
         """
         return input_text
 
-    def _predict(self, input_text: str) -> List[IntentPredictions]:
+    def _predict(self, input_text: str) -> List[List[IntentPredictions]]:
         """
         Predict the intent of the input text.
 
@@ -86,32 +88,30 @@ class UDKeyExtraction(UDBase):
             classification results.
         """
         cls_output = self.model(input_text)
-        return cls_output[0]
+        return cls_output
 
-    def _postprocess(self, predictions: List[IntentPredictions], top_k: int) -> List[IntentPredictions]:
+    def _postprocess(self, predictions: List[List[IntentPredictions]]) -> List[List[IntentPredictions]]:
         """
         Postprocess the classification predictions.
 
         Args:
             predictions: The raw classification predictions.
-            top_k: Number of top brobability predictions
 
         Returns:
             A list of tuples containing intent class and confidence score.
         """
-        return predictions[:top_k]
+        return predictions
 
-    def __call__(self, input_text: str, top_k: int) -> List[IntentPredictions]:
+    def __call__(self, input_text: str) -> List[List[IntentPredictions]]:
         """
         Make an keyword extraction prediction.
 
         Args:
             input_text: The input text for keyword extraction.
-            top_k: Number of top brobability predictions
 
         Returns:
             A list of dictionaries containing intent label and score.
         """
         input_text = self._preprocess(input_text)
         predictions = self._predict(input_text)
-        return self._postprocess(predictions, top_k)
+        return self._postprocess(predictions)
