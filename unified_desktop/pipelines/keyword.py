@@ -98,7 +98,7 @@ class UDKeyExtraction(UDBase):
             predictions: The raw classification predictions.
 
         Returns:
-            A list of tuples containing intent class and confidence score.
+            A list of list containing keywords and confidence score.
         """
         return predictions
 
