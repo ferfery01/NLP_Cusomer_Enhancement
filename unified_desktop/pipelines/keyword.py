@@ -7,7 +7,7 @@ from unified_desktop.pipelines.base import UDBase
 
 
 class IntentPredictions(TypedDict):
-    """The predictions from the Whisper ASR model."""
+    """The predictions from the model."""
 
     entity: str
     score: float
