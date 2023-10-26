@@ -19,18 +19,12 @@ class IntentPredictions(TypedDict):
 
 class UDKeyExtraction(UDBase):
     """
-    This class is used for keyword extraction using the ALBERT model.
-
-    ALBERT is a transformers model pretrained on a large corpus of English data in a self-supervised fashion.
-
-    Goal: Detect the intent of the customers using their text queries.
-    """
-
-    """
+    This class is used for keyword extraction using the BERT model.
     available_models are the list of all transformer models
-    that works well for the IntentDetection purpose.
+    that works well for the keyword extraction purpose.
     More will be added to the list after testing each one.
     """
+
     available_models: ClassVar[List[str]] = ["yanekyuk/bert-uncased-keyword-extractor"]
 
     def __init__(
@@ -42,7 +36,7 @@ class UDKeyExtraction(UDBase):
         Initialize the UDKeyExtraction class.
 
         Args:
-            name (str): The name of the ALBERT model to use.
+            name (str): The name of the BERT model to use.
             device (Union[str, torch.device, None]):
             The device to run the model on. The device can be
             specified as a string, a torch.device, or left
@@ -56,7 +50,7 @@ class UDKeyExtraction(UDBase):
         Validate the provided arguments.
 
         Raises:
-            ValueError: If the model name is None.
+            ValueError: If the model name is not in the list of available_models.
         """
         if self.name not in self.available_models:
             raise ValueError(f"Model {self.name} not found; available models: {self.available_models}")
@@ -89,7 +83,7 @@ class UDKeyExtraction(UDBase):
             input_text: The input text for keyword extraction.
 
         Returns:
-            classification results.
+            prediction results (list of keys in "IntentPredictions")
         """
         cls_output = self.model(input_text)
         return cls_output
@@ -102,7 +96,7 @@ class UDKeyExtraction(UDBase):
             predictions: The raw classification predictions.
 
         Returns:
-            A list of list containing keywords and confidence score.
+            A list of tuples [index of the word, the keyword, score].
         """
         prediction = [
             (item["index"], item["word"], item["score"])
@@ -119,7 +113,7 @@ class UDKeyExtraction(UDBase):
             input_text: The input text for keyword extraction.
 
         Returns:
-            A list of dictionaries containing intent label and score.
+            A list of tuples [index of the word, the keyword, score].
         """
         input_text = self._preprocess(input_text)
         predictions = self._predict(input_text)
