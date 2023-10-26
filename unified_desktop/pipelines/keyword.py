@@ -1,9 +1,12 @@
 from typing import ClassVar, List, Optional, Tuple, TypedDict, Union
 
 import torch
+from nltk.corpus import stopwords
 from transformers import pipeline
 
 from unified_desktop.pipelines.base import UDBase
+
+sw_nltk = stopwords.words("english")
 
 
 class KeyPredictions(TypedDict):
@@ -101,7 +104,7 @@ class UDKeyExtraction(UDBase):
         prediction = [
             (item["index"], item["word"], item["score"])
             for item in predictions
-            if item["word"] not in ["and", "or", "is", "are", "can", "can't"]
+            if item["word"] not in sw_nltk
         ]
         return prediction
 
