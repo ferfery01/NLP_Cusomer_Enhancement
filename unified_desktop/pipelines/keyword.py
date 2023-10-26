@@ -1,4 +1,4 @@
-from typing import ClassVar, List, Optional, TypedDict, Union
+from typing import ClassVar, List, Optional, Tuple, TypedDict, Union
 
 import torch
 from transformers import pipeline
@@ -9,8 +9,12 @@ from unified_desktop.pipelines.base import UDBase
 class IntentPredictions(TypedDict):
     """The predictions from the Whisper ASR model."""
 
-    label: str
+    entity: str
     score: float
+    index: int
+    word: str
+    start: int
+    end: int
 
 
 class UDKeyExtraction(UDBase):
@@ -77,7 +81,7 @@ class UDKeyExtraction(UDBase):
         """
         return input_text
 
-    def _predict(self, input_text: str) -> List[List[IntentPredictions]]:
+    def _predict(self, input_text: str) -> List[IntentPredictions]:
         """
         Predict the intent of the input text.
 
@@ -90,7 +94,7 @@ class UDKeyExtraction(UDBase):
         cls_output = self.model(input_text)
         return cls_output
 
-    def _postprocess(self, predictions: List[List[IntentPredictions]]) -> List[List[IntentPredictions]]:
+    def _postprocess(self, predictions: List[IntentPredictions]) -> List[Tuple[int, str, float]]:
         """
         Postprocess the classification predictions.
 
@@ -100,9 +104,14 @@ class UDKeyExtraction(UDBase):
         Returns:
             A list of list containing keywords and confidence score.
         """
-        return predictions
+        prediction = [
+            (item["index"], item["word"], item["score"])
+            for item in predictions
+            if item["word"] not in ["and", "or", "is", "are", "can", "can't"]
+        ]
+        return prediction
 
-    def __call__(self, input_text: str) -> List[List[IntentPredictions]]:
+    def __call__(self, input_text: str) -> List[Tuple[int, str, float]]:
         """
         Make an keyword extraction prediction.
 
