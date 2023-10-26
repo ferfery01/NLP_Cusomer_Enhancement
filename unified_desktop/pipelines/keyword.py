@@ -6,7 +6,7 @@ from transformers import pipeline
 from unified_desktop.pipelines.base import UDBase
 
 
-class IntentPredictions(TypedDict):
+class KeyPredictions(TypedDict):
     """The predictions from the model."""
 
     entity: str
@@ -75,7 +75,7 @@ class UDKeyExtraction(UDBase):
         """
         return input_text
 
-    def _predict(self, input_text: str) -> List[IntentPredictions]:
+    def _predict(self, input_text: str) -> List[KeyPredictions]:
         """
         Predict the intent of the input text.
 
@@ -83,12 +83,12 @@ class UDKeyExtraction(UDBase):
             input_text: The input text for keyword extraction.
 
         Returns:
-            prediction results (list of keys in "IntentPredictions")
+            prediction results (list of keys in "KeyPredictions")
         """
         cls_output = self.model(input_text)
         return cls_output
 
-    def _postprocess(self, predictions: List[IntentPredictions]) -> List[Tuple[int, str, float]]:
+    def _postprocess(self, predictions: List[KeyPredictions]) -> List[Tuple[int, str, float]]:
         """
         Postprocess the classification predictions.
 
