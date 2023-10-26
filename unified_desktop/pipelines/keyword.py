@@ -76,7 +76,7 @@ class UDKeyExtraction(UDBase):
             input_text: The input text to preprocess.
 
         Returns:
-            str: The preprocessed input text as a string.
+            str: The preprocessed input text as a string: removing repetetive letters in wordsxs.
         """
 
         rx = re.compile(r"([^\W\d_])\1{2,}")
@@ -109,15 +109,25 @@ class UDKeyExtraction(UDBase):
             predictions: The raw classification predictions.
 
         Returns:
-            A list of tuples [index of the word, the keyword, score].
+            A list of tuples [index of the word, the keyword, score] - remove
+            repetetive and stop words.
         """
 
-        prediction = [
-            (item["index"], item["word"], item["score"])
-            for item in predictions
-            if item["word"].lower() not in sw_nltk
-        ]
-        return prediction
+        # Create an empty set to keep track of unique words
+        seen_words = set()
+
+        # Initialize a list to store the filtered predictions
+        filtered_predictions = []
+
+        for item in predictions:
+            word = item["word"].lower()
+
+            # Check if the word is not in the stop words list and is not a repetitive word
+            if word not in sw_nltk and word not in seen_words:
+                seen_words.add(word)  # Add the word to the set of seen words
+                filtered_predictions.append((item["index"], item["word"], item["score"]))
+
+        return filtered_predictions
 
     def __call__(self, input_text: str) -> List[Tuple[int, str, float]]:
         """
