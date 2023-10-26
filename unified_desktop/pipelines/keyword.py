@@ -1,7 +1,9 @@
+import re
 from typing import ClassVar, List, Optional, Tuple, TypedDict, Union
 
 import torch
 from nltk.corpus import stopwords
+from textblob import Word
 from transformers import pipeline
 
 from unified_desktop.pipelines.base import UDBase
@@ -76,6 +78,14 @@ class UDKeyExtraction(UDBase):
         Returns:
             str: The preprocessed input text as a string.
         """
+
+        rx = re.compile(r"([^\W\d_])\1{2,}")
+        input_text = re.sub(
+            r"[^\W\d_]+",
+            lambda x: Word(rx.sub(r"\1\1", x.group())).correct() if rx.search(x.group()) else x.group(),
+            input_text,
+        )
+
         return input_text
 
     def _predict(self, input_text: str) -> List[KeyPredictions]:
@@ -101,10 +111,11 @@ class UDKeyExtraction(UDBase):
         Returns:
             A list of tuples [index of the word, the keyword, score].
         """
+
         prediction = [
             (item["index"], item["word"], item["score"])
             for item in predictions
-            if item["word"] not in sw_nltk
+            if item["word"].lower() not in sw_nltk
         ]
         return prediction
 
