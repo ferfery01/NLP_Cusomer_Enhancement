@@ -18,7 +18,8 @@ class UDBase(ABC):
         - _postprocess
 
     Attributes:
-        device (Union[str, torch.device]): The computational device to use, either a string or a PyTorch device object.
+        device (Union[str, torch.device]): The computational device to use, either a string or a PyTorch
+            device object. If None, defaults to the best available device.
     """
 
     def __init__(self, device: Optional[Union[str, torch.device]] = None) -> None:
@@ -28,15 +29,14 @@ class UDBase(ABC):
             device (Union[str, torch.device], optional): Specifies the PyTorch device for running the model.
             Defaults to the best available device.
         """
-        self.device = device if device else get_best_available_device()
+        self.device = torch.device(device) if device else get_best_available_device()
 
         self._validate_args()
         self._load_model()
 
-    @abstractmethod
     def _validate_args(self) -> None:
         """Validate initialization arguments."""
-        raise NotImplementedError
+        pass
 
     @abstractmethod
     def _load_model(self) -> None:

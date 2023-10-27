@@ -2,14 +2,17 @@
 --find-links https://download.pytorch.org/whl/torch_stable.html
 torch==2.0.1; sys_platform == "darwin"
 torch==2.0.1+cu118; sys_platform == "linux"
+torchaudio==2.0.2; sys_platform == "darwin"
+torchaudio==2.0.2+cu118; sys_platform == "linux"
 
 # === Install all other dependencies ===
-openai-whisper==20230918
-pandas==2.1.1
-rich==13.6.0
-
-transformers==4.34.0
+click==8.1.7
 nltk == 3.8.1
-
-textblob == 0.17.0
+openai-whisper==20230918
+openpyxl==3.1.2
+pandas==2.1.1
 regex == 2023.8.8
+rich==13.6.0
+speechbrain==0.5.15
+textblob == 0.17.1
+transformers==4.34.0

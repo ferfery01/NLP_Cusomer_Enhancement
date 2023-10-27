@@ -73,6 +73,18 @@ To install the testing and development tools in the environment, do:
 pip install -e ".[dev]"
 ```
 
+#### Additional Dependencies
+
+This project requires the command-line tool [ffmpeg](https://ffmpeg.org/) for handling audio input. `ffmpeg` is a widely-used software to record, convert, and stream audio and video. You can install it on your system using the following commands based on your operating system:
+
+```shell script
+# For Ubuntu or Debian:
+sudo apt update && sudo apt install ffmpeg
+
+# For MacOS (using Homebrew):
+brew install ffmpeg
+```
+
 ## Running Tests and Using Dev Tools
 
 ### Testing

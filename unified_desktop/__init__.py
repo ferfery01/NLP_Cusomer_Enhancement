@@ -9,3 +9,6 @@ ROOT_DIR = PROJECT_DIR.parent
 RESOURCES_DIR = ROOT_DIR / "resources"
 """The resources directory.
 """
+CACHE_DIR = ROOT_DIR / ".cache"
+"""The cache directory for storing downloaded files.
+"""

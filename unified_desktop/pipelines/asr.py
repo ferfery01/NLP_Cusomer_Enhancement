@@ -43,7 +43,8 @@ class UDSpeechRecognizer(UDBase):
      Attributes:
         name (str): One of the official model names listed by `whisper.available_models()`
         task (str, optional): Task to perform, either 'translate' or 'transcribe'. Defaults to None.
-        device (str): PyTorch device for the model. Defaults to 'cpu'.
+        device (str, torch.device): PyTorch device for the model. If None, defaults to the best
+            available device.
         model (whisper.ASRModel): The loaded Whisper ASR model.
     """
 
@@ -64,6 +65,8 @@ class UDSpeechRecognizer(UDBase):
             raise ValueError(f"Model {self.name} not found; available models: {available_models}")
         if self.task and self.task not in ("translate", "transcribe"):
             raise ValueError(f"Task {self.task} not supported; supported tasks: ('translate', 'transcribe')")
+        if self.device == torch.device("mps"):
+            raise ValueError("ASR does not support MPS. Please use another device.")
 
     def _load_model(self) -> None:
         """Load the ASR model."""
