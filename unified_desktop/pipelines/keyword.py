@@ -1,5 +1,5 @@
 import re
-from typing import ClassVar, List, Optional, Tuple, TypedDict, Union
+from typing import ClassVar, List, Optional, TypedDict, Union
 
 import torch
 from nltk.corpus import stopwords
@@ -8,10 +8,8 @@ from transformers import pipeline
 
 from unified_desktop.pipelines.base import UDBase
 
-sw_nltk = stopwords.words("english")
 
-
-class KeyPredictions(TypedDict):
+class RawKeyPredictions(TypedDict):
     """The predictions from the model."""
 
     entity: str
@@ -20,6 +18,14 @@ class KeyPredictions(TypedDict):
     word: str
     start: int
     end: int
+
+
+class KeyPredictions(TypedDict):
+    """The filtered predictions from the model."""
+
+    score: float
+    index: int
+    word: str
 
 
 class UDKeyExtraction(UDBase):
@@ -49,6 +55,7 @@ class UDKeyExtraction(UDBase):
         """
         self.name = name
         super().__init__(device=device)
+        self.sw_nltk = stopwords.words("english")
 
     def _validate_args(self) -> None:
         """
@@ -88,7 +95,7 @@ class UDKeyExtraction(UDBase):
 
         return input_text
 
-    def _predict(self, input_text: str) -> List[KeyPredictions]:
+    def _predict(self, input_text: str) -> List[RawKeyPredictions]:
         """
         Predict the intent of the input text.
 
@@ -96,20 +103,20 @@ class UDKeyExtraction(UDBase):
             input_text: The input text for keyword extraction.
 
         Returns:
-            prediction results (list of keys in "KeyPredictions")
+            prediction results (list of keys in "RawKeyPredictions")
         """
-        cls_output = self.model(input_text)
-        return cls_output
+        return self.model(input_text)
 
-    def _postprocess(self, predictions: List[KeyPredictions]) -> List[Tuple[int, str, float]]:
+    def _postprocess(self, predictions: List[RawKeyPredictions]) -> List[KeyPredictions]:
         """
         Postprocess the classification predictions.
 
         Args:
-            predictions: The raw classification predictions.
+            predictions: The list of raw classification predictions.
+            sw_nltk: stop words
 
         Returns:
-            A list of tuples [index of the word, the keyword, score] - remove
+            List[KeyPredictions]:A list of dict [index, the keyword, score] - remove
             repetetive and stop words.
         """
 
@@ -120,16 +127,17 @@ class UDKeyExtraction(UDBase):
         filtered_predictions = []
 
         for item in predictions:
-            word = item["word"].lower()
+            word = item["word"].lower()  # Access the attributes correctly using brackets
 
-            # Check if the word is not in the stop words list and is not a repetitive word
-            if word not in sw_nltk and word not in seen_words:
-                seen_words.add(word)  # Add the word to the set of seen words
-                filtered_predictions.append((item["index"], item["word"], item["score"]))
+            if word not in self.sw_nltk and word not in seen_words:
+                seen_words.add(word)
+                filtered_predictions.append(
+                    KeyPredictions(score=item["score"], index=item["index"], word=item["word"])
+                )
 
         return filtered_predictions
 
-    def __call__(self, input_text: str) -> List[Tuple[int, str, float]]:
+    def __call__(self, input_text: str) -> List[KeyPredictions]:
         """
         Make an keyword extraction prediction.
 
@@ -137,7 +145,7 @@ class UDKeyExtraction(UDBase):
             input_text: The input text for keyword extraction.
 
         Returns:
-            A list of tuples [index of the word, the keyword, score].
+            List[KeyPredictions]: A list of tuples [index of the word, the keyword, score].
         """
         input_text = self._preprocess(input_text)
         predictions = self._predict(input_text)
