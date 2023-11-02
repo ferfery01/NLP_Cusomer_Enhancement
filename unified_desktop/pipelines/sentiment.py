@@ -29,7 +29,7 @@ def sentiment_degree(cur_senti: str, senti_score: float) -> str:
     """
 
     if cur_senti == "positive":
-        emj = "\U0001F60A"
+        emj = f'😀 {"High"}' if senti_score >= 0.9 else "\U0001F60A"
     elif cur_senti == "negative":
         emj = f'\U0001F621 {"High"}' if senti_score >= 0.9 else "\U0001F612"
     else:
@@ -57,11 +57,14 @@ class UDSentimentDetector(UDBase):
     This class is used for sentiment analysis with a specific model. It inherits from UDBase.
     """
 
-    available_models: ClassVar[List[str]] = ["j-hartmann/sentiment-roberta-large-english-3-classes"]
+    available_models: ClassVar[List[str]] = [
+        "j-hartmann/sentiment-roberta-large-english-3-classes",
+        "cardiffnlp/twitter-roberta-base-sentiment-latest",
+    ]
 
     def __init__(
         self,
-        name: str = "j-hartmann/sentiment-roberta-large-english-3-classes",
+        name: str = "cardiffnlp/twitter-roberta-base-sentiment-latest",
         device: Optional[Union[str, torch.device]] = None,
     ) -> None:
         """
