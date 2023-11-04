@@ -1,6 +1,6 @@
 # import random
 # from pprint import pprint
-from typing import List, Optional, Tuple, Union
+from typing import List, Optional, Tuple
 
 import gradio as gr
 
@@ -67,24 +67,22 @@ def NLP_task_processing(
     return asr_result, ser_result, intents, keywords, summary, sentiment
 
 
-def create_gradio_ui_elements() -> (
-    Tuple[List[Union[gr.inputs.Audio, gr.inputs.CheckboxGroup]], List[gr.outputs.Textbox]]
-):
-    audio_input = gr.inputs.Audio(label="Upload an audio file")
-    intent_checkbox = gr.inputs.CheckboxGroup(["Intent Detection"], label="Select Tasks")
-    keyword_checkbox = gr.inputs.CheckboxGroup(["Keyword Extraction"], label=" ")
-    summary_checkbox = gr.inputs.CheckboxGroup(["Summarization"], label=" ")
-    sentiment_checkbox = gr.inputs.CheckboxGroup(["Sentiment Analysis"], label=" ")
+def create_gradio_ui_elements():
+    audio_input = gr.Audio(label="Upload an audio file")
+    intent_checkbox = gr.CheckboxGroup(["Intent Detection"], label="Select Tasks")
+    keyword_checkbox = gr.CheckboxGroup(["Keyword Extraction"], label=" ")
+    summary_checkbox = gr.CheckboxGroup(["Summarization"], label=" ")
+    sentiment_checkbox = gr.CheckboxGroup(["Sentiment Analysis"], label=" ")
 
     inputs = [audio_input, intent_checkbox, keyword_checkbox, summary_checkbox, sentiment_checkbox]
 
     outputs = [
-        gr.outputs.Textbox(label="ASR Result"),
-        gr.outputs.Textbox(label="SER Result"),
-        gr.outputs.Textbox(label="Intent Detection"),
-        gr.outputs.Textbox(label="Keyword Extraction"),
-        gr.outputs.Textbox(label="Summarization"),
-        gr.outputs.Textbox(label="Sentiment Analysis"),
+        gr.Textbox(label="ASR Result"),
+        gr.Textbox(label="SER Result"),
+        gr.Textbox(label="Intent Detection"),
+        gr.Textbox(label="Keyword Extraction"),
+        gr.Textbox(label="Summarization"),
+        gr.Textbox(label="Sentiment Analysis"),
     ]
 
     return inputs, outputs
