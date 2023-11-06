@@ -55,34 +55,32 @@ def NLP_task_processing(
     keyword_selected: List[str],
     summary_selected: List[str],
     sentiment_selected: List[str],
-) -> Tuple[str, str, Optional[str], Optional[List[str]], Optional[str], Optional[str]]:
+) -> Tuple[str, str, Optional[str], Optional[str], Optional[str], Optional[List[str]]]:
     asr_result = demo_asr(audio)
     ser_result = demo_ser(audio)
-
-    intents = demo_intent_detection(asr_result) if "Intent Detection" in intent_selected else None
-    keywords = demo_keyword_extraction(asr_result) if "Keyword Extraction" in keyword_selected else None
     summary = demo_summarization(asr_result) if "Summarization" in summary_selected else None
     sentiment = demo_sentiment_analysis(asr_result) if "Sentiment Analysis" in sentiment_selected else None
-
-    return asr_result, ser_result, intents, keywords, summary, sentiment
+    intents = demo_intent_detection(asr_result) if "Intent Detection" in intent_selected else None
+    keywords = demo_keyword_extraction(asr_result) if "Keyword Extraction" in keyword_selected else None
+    return asr_result, ser_result, sentiment, summary, intents, keywords
 
 
 def create_gradio_ui_elements():
     audio_input = gr.Audio(label="Upload an audio file")
-    intent_checkbox = gr.CheckboxGroup(["Intent Detection"], label="Select Tasks")
-    keyword_checkbox = gr.CheckboxGroup(["Keyword Extraction"], label=" ")
     summary_checkbox = gr.CheckboxGroup(["Summarization"], label=" ")
     sentiment_checkbox = gr.CheckboxGroup(["Sentiment Analysis"], label=" ")
+    intent_checkbox = gr.CheckboxGroup(["Intent Detection"], label="Select Tasks")
+    keyword_checkbox = gr.CheckboxGroup(["Keyword Extraction"], label=" ")
 
-    inputs = [audio_input, intent_checkbox, keyword_checkbox, summary_checkbox, sentiment_checkbox]
+    inputs = [audio_input, summary_checkbox, sentiment_checkbox, intent_checkbox, keyword_checkbox]
 
     outputs = [
         gr.Textbox(label="ASR Result"),
         gr.Textbox(label="SER Result"),
-        gr.Textbox(label="Intent Detection"),
-        gr.Textbox(label="Keyword Extraction"),
         gr.Textbox(label="Summarization"),
         gr.Textbox(label="Sentiment Analysis"),
+        gr.Textbox(label="Intent Detection"),
+        gr.Textbox(label="Keyword Extraction"),
     ]
 
     return inputs, outputs
