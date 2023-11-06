@@ -52,6 +52,7 @@ jobs:
                 echo "**************************************************"
                 echo "******** Installing required dependencies ********"
                 echo "**************************************************"
+                sudo apt-get install portaudio19-dev
 
                 # torch 2.x gets stuck on the azure-pipelines ubuntu-22.04 image when loading from the cache
                 # so we need to manually install it before installing the rest of the dependencies
