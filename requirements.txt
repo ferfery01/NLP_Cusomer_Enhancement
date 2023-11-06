@@ -16,3 +16,4 @@ rich==13.6.0
 speechbrain==0.5.15
 textblob == 0.17.1
 transformers==4.34.0
+gradio==4.1.0
