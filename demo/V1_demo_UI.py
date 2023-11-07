@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Tuple
 
 import gradio as gr
 import torch
@@ -63,17 +63,19 @@ def demo_ser(audio: str) -> str:
     return serObj(audio).label  # type: ignore
 
 
-def demo_intent_detection(text: str) -> str:
+def demo_intent_detection(text: str) -> List[Tuple[str, float]]:
     # Input text for keywords extraction
-    top_k = 1
+    top_k = 2
     model_intent = "vineetsharma/customer-support-intent-albert"
     intentObj = UDIntentClassifier(name=model_intent, device=device_dropdown.value)
     intent_results = intentObj(text, top_k)
-    return intent_results[0]["label"]
+    list_intent = []
+    for item in intent_results:
+        list_intent.append((item["label"], item["score"]))
+    return list_intent
 
 
 def demo_keyword_extraction(text: str) -> List[str]:
-    # Input text for keywords extraction
     model_key = "yanekyuk/bert-uncased-keyword-extractor"
     KeyObj = UDKeyExtraction(name=model_key, device=device_dropdown.value)
     key_results = KeyObj(text)
@@ -99,9 +101,9 @@ def NLP_task_processing(
 ) -> tuple[str, str, str, str, str, list[str]]:
     asr_result = demo_asr(audio)
     ser_result = demo_ser(audio)
-    intents = demo_intent_detection(asr_result)
     keywords = demo_keyword_extraction(asr_result)
     summary = demo_summarization(asr_result)
+    intents = demo_intent_detection(summary)
     sentiment = demo_sentiment_analysis(asr_result)
     return asr_result, ser_result, intents, keywords, summary, sentiment  # type: ignore
 
