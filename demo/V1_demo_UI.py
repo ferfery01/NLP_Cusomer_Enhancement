@@ -64,6 +64,7 @@ def demo_ser(audio: str) -> str:
 
 
 def demo_intent_detection(text: str) -> str:
+    # Input text for keywords extraction
     top_k = 1
     model_intent = "vineetsharma/customer-support-intent-albert"
     intentObj = UDIntentClassifier(name=model_intent, device=device_dropdown.value)
@@ -72,6 +73,7 @@ def demo_intent_detection(text: str) -> str:
 
 
 def demo_keyword_extraction(text: str) -> List[str]:
+    # Input text for keywords extraction
     model_key = "yanekyuk/bert-uncased-keyword-extractor"
     KeyObj = UDKeyExtraction(name=model_key, device=device_dropdown.value)
     key_results = KeyObj(text)
