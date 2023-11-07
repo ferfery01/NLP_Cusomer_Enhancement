@@ -128,8 +128,6 @@ def NLP_task_processing(
     summary = demo_summarization(asr_result)
     sentiment = demo_sentiment_analysis(asr_result)
 
-    # summary = demo_summarization(asr_result) if "Summarization" in summary_selected else None
-    # sentiment = demo_sentiment_analysis(asr_result) if "Sentiment Analysis" in sentiment_selected else None
     # intents = demo_intent_detection(asr_result) if "Intent Detection" in intent_selected else None
     # keywords = demo_keyword_extraction(asr_result) if "Keyword Extraction" in keyword_selected else None
     return asr_result, ser_result, intents, keywords, summary, sentiment  # type: ignore
