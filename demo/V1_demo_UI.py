@@ -102,9 +102,9 @@ def NLP_task_processing(
 ) -> tuple[str, str, List[Tuple[str, float]], list[str], str, str]:
     asr_result = demo_asr(audio)
     ser_result = demo_ser(audio)
-    keywords = demo_keyword_extraction(asr_result)
     summary = demo_summarization(asr_result)
     intents = demo_intent_detection(summary)
+    keywords = demo_keyword_extraction(summary)
     sentiment = demo_sentiment_analysis(asr_result)
     return asr_result, ser_result, intents, keywords, summary, sentiment  # type: ignore
 
