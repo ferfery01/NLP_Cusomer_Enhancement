@@ -5,50 +5,16 @@ import torch
 import whisper
 
 from unified_desktop.pipelines import (
+    UDIntentClassifier,
+    UDKeyExtraction,
+    UDSentimentDetector,
     UDSpeechEmotionRecognizer,
     UDSpeechRecognizer,
     UDSummarizer,
 )
 
-# from unified_desktop.tools.timers import timer
-
-# For NLP task demonstration purposes
-
-
-# logger = logging.Logger("Demo_logger")
-# log_file = CACHE_DIR / "demo_v1.log"
-# if not log_file.exists():
-#     log_file.parent.mkdir(parents=True, exist_ok=True)
-#     log_file.touch()
-# logger.addHandler(logging.FileHandler(log_file))
-
-
 CUDA_OPTIONS = [f"cuda:{idx}" for idx in range(torch.cuda.device_count())]
 device_dropdown = gr.Dropdown(label="Device", choices=["cpu"] + CUDA_OPTIONS, value="cpu")
-
-
-# def update_asr_obj(change):
-#     global asrObj
-#     clear_output()
-#     display(model_dropdown_ASR, device_dropdown)
-#     asrObj = UDSpeechRecognizer(name=model_dropdown_ASR.value, device=device_dropdown.value)
-#     print(f"Loaded model: {model_dropdown_ASR.value} on device: {device_dropdown.value}")
-
-
-# def update_ser_obj(change):
-#     global serObj
-#     serObj = UDSpeechEmotionRecognizer(device=device_dropdown.value)
-#     clear_output()
-#     display(device_dropdown)
-#     print(f"Loaded SER model on device: {device_dropdown.value}")
-
-
-# def update_intent_obj(change):
-#     global intentObj
-#     clear_output()
-#     display(model_dropdown_intent, device_dropdown)
-#     intentObj = UDIntentClassifier(name=model_dropdown_intent.value, device=device_dropdown.value)
-#     print(f"Loaded model: {model_dropdown_intent.value} on device: {device_dropdown.value}")
 
 
 def demo_init():
@@ -98,11 +64,21 @@ def demo_ser(audio: str) -> str:
 
 
 def demo_intent_detection(text: str) -> str:
-    return "Intent: Greeting"
+    top_k = 1
+    model_intent = "vineetsharma/customer-support-intent-albert"
+    intentObj = UDIntentClassifier(name=model_intent, device=device_dropdown.value)
+    intent_results = intentObj(text, top_k)
+    return intent_results[0]["label"]
 
 
 def demo_keyword_extraction(text: str) -> List[str]:
-    return ["mock", "keywords"]
+    model_key = "yanekyuk/bert-uncased-keyword-extractor"
+    KeyObj = UDKeyExtraction(name=model_key, device=device_dropdown.value)
+    key_results = KeyObj(text)
+    list_keys = []
+    for item in key_results:
+        list_keys.append(item["word"])
+    return list_keys
 
 
 def demo_summarization(text: str) -> str:
@@ -111,15 +87,13 @@ def demo_summarization(text: str) -> str:
 
 
 def demo_sentiment_analysis(text: str) -> str:
-    return "Positive"
+    sentiment_obj = UDSentimentDetector()
+    output_sentiment = sentiment_obj(input_text=text)
+    return output_sentiment
 
 
 def NLP_task_processing(
     audio: str,
-    intent_selected: List[str],
-    keyword_selected: List[str],
-    summary_selected: List[str],
-    sentiment_selected: List[str],
 ) -> tuple[str, str, str, str, str, list[str]]:
     asr_result = demo_asr(audio)
     ser_result = demo_ser(audio)
@@ -127,20 +101,11 @@ def NLP_task_processing(
     keywords = demo_keyword_extraction(asr_result)
     summary = demo_summarization(asr_result)
     sentiment = demo_sentiment_analysis(asr_result)
-
-    # intents = demo_intent_detection(asr_result) if "Intent Detection" in intent_selected else None
-    # keywords = demo_keyword_extraction(asr_result) if "Keyword Extraction" in keyword_selected else None
     return asr_result, ser_result, intents, keywords, summary, sentiment  # type: ignore
 
 
 def create_gradio_ui_elements():
     audio_input = gr.Audio(type="filepath", label="Upload an audio file")
-    # summary_checkbox = gr.CheckboxGroup(["Summarization"], label=" ")
-    # sentiment_checkbox = gr.CheckboxGroup(["Sentiment Analysis"], label=" ")
-    # intent_checkbox = gr.CheckboxGroup(["Intent Detection"], label="Select Tasks")
-    # keyword_checkbox = gr.CheckboxGroup(["Keyword Extraction"], label=" ")
-
-    # inputs = [audio_input, summary_checkbox, sentiment_checkbox, intent_checkbox, keyword_checkbox]
     inputs = [audio_input]
 
     outputs = [
@@ -151,7 +116,6 @@ def create_gradio_ui_elements():
         gr.Textbox(label="Summarization"),
         gr.Textbox(label="Sentiment Analysis"),
     ]
-
     return inputs, outputs
 
 
