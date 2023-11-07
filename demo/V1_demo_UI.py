@@ -1,6 +1,7 @@
 from typing import List, Tuple
 
 import gradio as gr
+import numpy as np
 import torch
 import whisper
 
@@ -65,13 +66,13 @@ def demo_ser(audio: str) -> str:
 
 def demo_intent_detection(text: str) -> List[Tuple[str, float]]:
     # Input text for keywords extraction
-    top_k = 2
+    top_k = 3
     model_intent = "vineetsharma/customer-support-intent-albert"
     intentObj = UDIntentClassifier(name=model_intent, device=device_dropdown.value)
     intent_results = intentObj(text, top_k)
     list_intent = []
     for item in intent_results:
-        list_intent.append((item["label"], item["score"]))
+        list_intent.append((item["label"], np.round(item["score"], 3)))
     return list_intent
 
 
