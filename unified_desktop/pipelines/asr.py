@@ -121,7 +121,7 @@ class UDSpeechRecognizer(UDBase):
         """Postprocesses the model's prediction to extract the text."""
         return predictions["text"].strip()
 
-    def __call__(self, audio: Union[str, Path, io.BytesIO, np.ndarray], **kwargs: Any) -> str:
+    def __call__(self, audio: Union[str, Path, bytes, io.BytesIO, np.ndarray], **kwargs: Any) -> str:
         """Perform ASR on the audio file and return the transcribed or translated text."""
         audio_data = self._preprocess(audio)
         predictions = self._predict(audio_data, **kwargs)
