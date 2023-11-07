@@ -88,26 +88,28 @@ class UDIntentClassifier(UDBase):
         cls_output = self.model(input_text)
         return cls_output[0]
 
-    def _postprocess(self, predictions: List[IntentPredictions], top_k: int) -> List[IntentPredictions]:
+    def _postprocess(
+        self, predictions: List[IntentPredictions], top_k: Optional[int]
+    ) -> List[IntentPredictions]:
         """
         Postprocess the classification predictions.
 
         Args:
             predictions: The raw classification predictions.
-            top_k: Number of top brobability predictions
+            top_k: The number of top predictions to return. If None, all predictions are returned.
 
         Returns:
             A list of tuples containing intent class and confidence score.
         """
-        return predictions[:top_k]
+        return predictions[:top_k] if top_k else predictions
 
-    def __call__(self, input_text: str, top_k: int) -> List[IntentPredictions]:
+    def __call__(self, input_text: str, top_k: Optional[int] = None) -> List[IntentPredictions]:
         """
         Make an intent classification prediction.
 
         Args:
             input_text: The input text for intent classification.
-            top_k: Number of top brobability predictions
+            top_k: The number of top predictions to return. If None, all predictions are returned.
 
         Returns:
             A list of dictionaries containing intent label and score.

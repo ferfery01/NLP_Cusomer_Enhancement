@@ -28,7 +28,7 @@ class KeyPredictions(TypedDict):
     word: str
 
 
-class UDKeyExtraction(UDBase):
+class UDKeyExtractor(UDBase):
     """
     This class is used for keyword extraction using the BERT model.
     available_models are the list of all transformer models
