@@ -98,7 +98,7 @@ def demo_sentiment_analysis(text: str) -> str:
 
 def NLP_task_processing(
     audio: str,
-) -> tuple[str, str, str, str, str, list[str]]:
+) -> tuple[str, str, List[Tuple[str, float]], list[str], str, str]:
     asr_result = demo_asr(audio)
     ser_result = demo_ser(audio)
     keywords = demo_keyword_extraction(asr_result)
