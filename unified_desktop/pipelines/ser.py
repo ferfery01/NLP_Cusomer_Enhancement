@@ -1,5 +1,5 @@
 from pathlib import Path
-from typing import Mapping, NamedTuple, Optional, Union
+from typing import ClassVar, Mapping, NamedTuple, Optional, Sequence, Union
 
 import torch
 from speechbrain.pretrained.interfaces import foreign_class
@@ -35,20 +35,26 @@ class UDSpeechEmotionRecognizer(UDBase):
     Currently, the model predicts one of the following emotion: Anger, Happy, Neutral, Sad
 
     Attributes:
-        device (str, torch.device): PyTorch device for the model. If None, defaults to the best
-           available device.
         model (EncoderWav2vec2Classifier): The loaded SpeechBrain emotion recognition model.
     """
 
-    def __init__(self, device: Optional[Union[str, torch.device]] = None) -> None:
-        super().__init__(device=device)
+    models_list: ClassVar[Sequence[str]] = ("speechbrain/emotion-recognition-wav2vec2-IEMOCAP",)
+
+    def __init__(
+        self,
+        model_id: str = "speechbrain/emotion-recognition-wav2vec2-IEMOCAP",
+        torch_dtype: Optional[torch.dtype] = None,
+        device: Optional[Union[str, torch.device]] = None,
+    ) -> None:
+        super().__init__(model_id=model_id, torch_dtype=torch_dtype, device=device)
 
     def _validate_args(self) -> None:
         """Validate the arguments passed to the constructor."""
+        super()._validate_args()
         if self.device == torch.device("mps"):
             raise ValueError("SER does not support MPS. Please use another device.")
 
-    def _load_model(self) -> None:
+    def _load_model_or_pipeline(self) -> None:
         """Load the speech emotion recognition model."""
         self.model = foreign_class(
             source="speechbrain/emotion-recognition-wav2vec2-IEMOCAP",
