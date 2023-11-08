@@ -7,7 +7,7 @@ import whisper
 
 from unified_desktop.pipelines import (
     UDIntentClassifier,
-    UDKeyExtraction,
+    UDKeyExtractor,
     UDSentimentDetector,
     UDSpeechEmotionRecognizer,
     UDSpeechRecognizer,
@@ -81,7 +81,7 @@ def demo_intent_detection(text: str) -> List[Tuple[str, float]]:
 
 def demo_keyword_extraction(text: str) -> List[str]:
     model_key = "yanekyuk/bert-uncased-keyword-extractor"
-    KeyObj = UDKeyExtraction(name=model_key, device=device_dropdown.value)
+    KeyObj = UDKeyExtractor(name=model_key, device=device_dropdown.value)
     key_results = KeyObj(text)
     list_keys = []
     for item in key_results:
@@ -97,7 +97,7 @@ def demo_summarization(text: str) -> str:
 def demo_sentiment_analysis(text: str) -> str:
     sentiment_obj = UDSentimentDetector()
     output_sentiment = sentiment_obj(input_text=text)
-    return output_sentiment
+    return output_sentiment.sentiment
 
 
 def NLP_task_processing(
