@@ -25,7 +25,7 @@ class UDSpeechRecognizer(UDBase):
         pipeline (transformers.pipeline): Pipeline for ASR.
     """
 
-    available_models: ClassVar[Sequence[str]] = (
+    models_list: ClassVar[Sequence[str]] = (
         "openai/whisper-tiny.en",
         "openai/whisper-tiny",
         "openai/whisper-base.en",
@@ -34,9 +34,10 @@ class UDSpeechRecognizer(UDBase):
         "openai/whisper-small",
         "openai/whisper-medium.en",
         "openai/whisper-medium",
+        "openai/whisper-large",
         "openai/whisper-large-v1",
         "openai/whisper-large-v2",
-        "openai/whisper-large",
+        "openai/whisper-large-v3",
         "distil-whisper/distil-medium.en",
         "distil-whisper/distil-large-v2",
     )
@@ -55,24 +56,16 @@ class UDSpeechRecognizer(UDBase):
         self.torch_dtype = torch_dtype
         if torch_dtype is None:
             self.torch_dtype = torch.float16 if torch.cuda.is_available() else torch.float32
-        super().__init__(device=device)
+        super().__init__(model_id=model_id, torch_dtype=torch_dtype, device=device)
 
     def _validate_args(self) -> None:
         """Validate the provided arguments."""
-        if self.model_id not in self.available_models:
-            raise ValueError(f"Model {self.model_id} not found; available models: {self.available_models}")
-
-        if self.torch_dtype not in (torch.float16, torch.float32):
-            raise ValueError(
-                f"Invalid torch_dtype: {self.torch_dtype}. Must be torch.float16 or torch.float32."
-            )
-        if self.torch_dtype == torch.float16 and not torch.cuda.is_available():
-            raise ValueError("torch.float16 is only supported on CUDA devices.")
+        super()._validate_args()
 
         if self.device == torch.device("mps"):
             raise ValueError("ASR does not support MPS. Please use another device.")
 
-    def _load_model(self) -> None:
+    def _load_model_or_pipeline(self) -> None:
         """Initializes and returns the ASR pipeline with the specified model."""
         model = AutoModelForSpeechSeq2Seq.from_pretrained(
             self.model_id,

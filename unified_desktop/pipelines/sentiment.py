@@ -1,9 +1,12 @@
-from typing import Any, ClassVar, List, NamedTuple, Optional, TypedDict, Union
+from typing import Any, ClassVar, NamedTuple, Optional, Sequence, TypedDict, Union
 
 import torch
-from transformers import pipeline
+from transformers import AutoModelForSequenceClassification, AutoProcessor, pipeline
 
+from unified_desktop.core.utils.logging import setup_logger
 from unified_desktop.pipelines.base import UDBase
+
+logger = setup_logger()
 
 
 class SentimentModelPredictions(TypedDict):
@@ -51,52 +54,51 @@ def sentiment_degree(cur_senti: str, senti_score: float) -> SentimentPredictions
 
 
 class UDSentimentDetector(UDBase):
-    """
-    Utility class for performing sentiment detection using a specific model.
+    """A class for performing Sentiment Detection using transformer models."""
 
-    Args:
-        name (str): The name of the sentiment analysis model.
-        device (Union[str, torch.device]): The device on which to run the model.
-
-    This class is used for sentiment analysis with a specific model. It inherits from UDBase.
-    """
-
-    available_models: ClassVar[List[str]] = [
+    models_list: ClassVar[Sequence[str]] = (
         "j-hartmann/sentiment-roberta-large-english-3-classes",
         "cardiffnlp/twitter-roberta-base-sentiment-latest",
-    ]
+    )
 
     def __init__(
         self,
-        name: str = "cardiffnlp/twitter-roberta-base-sentiment-latest",
+        model_id: str = "cardiffnlp/twitter-roberta-base-sentiment-latest",
+        torch_dtype: Optional[torch.dtype] = None,
         device: Optional[Union[str, torch.device]] = None,
     ) -> None:
         """
         Initialize the UDSentimentDetection instance.
 
         Args:
-            name (str): The name of the sentiment analysis model.
-            device (Union[str, torch.device]): The device on which to run the model.
+            model_id (str): The name of the ALBERT model to use.
+            torch_dtype (torch.dtype): The data type for torch tensors.
+            device (Union[str, torch.device, None]): The device to run the model on. If None, the
+                default device is used.
         """
-        self.name = name
-        super().__init__(device=device)
+        super().__init__(model_id=model_id, torch_dtype=torch_dtype, device=device)
 
-    def _validate_args(self) -> None:
-        """
-        Validate the model name to ensure it's a supported model.
-
-        Raises:
-            ValueError: If the provided model name is not supported.
-        """
-        if self.name not in self.available_models:
-            raise ValueError(f"Model {self.name} not found; available models: {self.available_models}")
-
-    def _load_model(self) -> None:
+    def _load_model_or_pipeline(self) -> None:
         """
         Load the sentiment analysis model using the specified name.
         """
-        self.model = pipeline(
-            "text-classification", model=self.name, device=self.device, return_all_scores=False
+        model = AutoModelForSequenceClassification.from_pretrained(
+            self.model_id,
+            torch_dtype=self.torch_dtype,
+            low_cpu_mem_usage=True,
+        )
+        model = model.to_bettertransformer().to(self.device)
+        processor = AutoProcessor.from_pretrained(self.model_id)
+        logger.info(f"Loaded model {self.model_id} on device {self.device}")
+
+        self.pipeline = pipeline(
+            task="text-classification",
+            model=model,
+            tokenizer=processor,
+            use_fast=True,
+            device=self.device,
+            torch_dtype=self.torch_dtype,
+            top_k=1,
         )
 
     def _preprocess(self, input_text: str) -> str:
@@ -122,8 +124,8 @@ class UDSentimentDetector(UDBase):
         Returns:
             SentimentModelPredictions: The predicted sentiment label and score.
         """
-        cls_output = self.model(input_text, **kwargs)
-        return cls_output[0]
+        cls_output = self.pipeline(input_text, **kwargs)
+        return cls_output[0][0]
 
     def _postprocess(self, predictions: SentimentModelPredictions) -> SentimentPredictions:
         """

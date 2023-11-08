@@ -1,4 +1,4 @@
-from typing import Any, Optional, Union
+from typing import Any, ClassVar, Optional, Sequence, Union
 
 import torch
 from transformers import BartForConditionalGeneration, BartTokenizer
@@ -7,24 +7,27 @@ from unified_desktop.pipelines.base import UDBase
 
 
 class UDSummarizer(UDBase):
-    """
-    A class for summarizing content from a file using the BART-base model.
+    """A class for summarizing content from a file using the BART-base model."""
 
-    Attributes:
-        device (str): PyTorch device for the model.
-    """
+    models_list: ClassVar[Sequence[str]] = "ainize/bart-base-cnn"
 
-    def __init__(self, device: Optional[Union[str, torch.device]] = None) -> None:
-        super().__init__(device=device)
+    def __init__(
+        self,
+        model_id: str = "ainize/bart-base-cnn",
+        torch_dtype: Optional[torch.dtype] = None,
+        device: Optional[Union[str, torch.device]] = None,
+    ) -> None:
+        super().__init__(model_id=model_id, torch_dtype=torch_dtype, device=device)
 
-    def _validate_args(self) -> None:
-        """Validate the arguments."""
-        pass
-
-    def _load_model(self) -> None:
+    def _load_model_or_pipeline(self) -> None:
         """Load the BART-base model and tokenizer."""
         self.tokenizer = BartTokenizer.from_pretrained("facebook/bart-base")
-        self.model = BartForConditionalGeneration.from_pretrained("ainize/bart-base-cnn").to(self.device)
+        self.model = BartForConditionalGeneration.from_pretrained(
+            "ainize/bart-base-cnn",
+            torch_dtype=self.torch_dtype,
+            low_cpu_mem_usage=True,
+        )
+        self.model = self.model.to_bettertransformer().to(self.device)
         self.model.eval()
 
     def _preprocess(self, content_file: str) -> torch.LongTensor:
