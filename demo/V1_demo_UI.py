@@ -107,7 +107,7 @@ def NLP_task_processing(
     ser_result = demo_ser(audio)
     summary = demo_summarization(asr_result)
     intents = demo_intent_detection(summary)
-    keywords = demo_keyword_extraction(summary)
+    keywords = demo_keyword_extraction(asr_result)
     sentiment = demo_sentiment_analysis(asr_result)
     return asr_result, ser_result, intents, keywords, summary, sentiment  # type: ignore
 
