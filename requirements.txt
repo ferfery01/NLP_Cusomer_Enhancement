@@ -6,14 +6,18 @@ torchaudio==2.0.2; sys_platform == "darwin"
 torchaudio==2.0.2+cu118; sys_platform == "linux"
 
 # === Install all other dependencies ===
+accelerate==0.24.1
 click==8.1.7
+gradio==4.1.0
 nltk == 3.8.1
-openai-whisper==20230918
 openpyxl==3.1.2
+optimum==1.14.0
 pandas==2.1.1
+pyaudio==0.2.13
 regex == 2023.8.8
 rich==13.6.0
+soundfile==0.12.1
 speechbrain==0.5.15
+speechrecognition==3.10.0
 textblob == 0.17.1
-transformers==4.34.0
-gradio==4.1.0
+transformers==4.35.0
