@@ -1,9 +1,12 @@
-from typing import ClassVar, List, Optional, TypedDict, Union
+from typing import ClassVar, List, Optional, Sequence, TypedDict, Union
 
 import torch
-from transformers import pipeline
+from transformers import AutoModelForSequenceClassification, AutoProcessor, pipeline
 
+from unified_desktop.core.utils.logging import setup_logger
 from unified_desktop.pipelines.base import UDBase
+
+logger = setup_logger()
 
 
 class IntentPredictions(TypedDict):
@@ -14,54 +17,56 @@ class IntentPredictions(TypedDict):
 
 
 class UDIntentClassifier(UDBase):
-    """
-    This class is used for intent classification using the ALBERT model.
+    """This class is used for intent classification using the ALBERT model.
 
     ALBERT is a transformers model pretrained on a large corpus of English data in a self-supervised fashion.
 
     Goal: Detect the intent of the customers using their text queries.
     """
 
-    """
-    available_models are the list of all transformer models
-    that works well for the IntentDetection purpose.
+    models_list: ClassVar[Sequence[str]] = ("vineetsharma/customer-support-intent-albert",)
+    """These are the list of all transformer models that works well for the IntentDetection purpose.
     More will be added to the list after testing each one.
     """
-    available_models: ClassVar[List[str]] = ["vineetsharma/customer-support-intent-albert"]
 
     def __init__(
         self,
-        name: str = "vineetsharma/customer-support-intent-albert",
+        model_id: str = "vineetsharma/customer-support-intent-albert",
+        torch_dtype: Optional[torch.dtype] = None,
         device: Optional[Union[str, torch.device]] = None,
     ):
-        """
-        Initialize the UDIntentClassifier class.
+        """Initialize the UDIntentClassifier class.
 
         Args:
-            name (str): The name of the ALBERT model to use.
-            device (Union[str, torch.device, None]):
-            The device to run the model on. The device can be
-            specified as a string, a torch.device, or left
-            as None to use the default device.
+            model_id (str): The name of the ALBERT model to use.
+            torch_dtype (torch.dtype): The data type for torch tensors.
+            device (Union[str, torch.device, None]): The device to run the model on. If None, the
+                default device is used.
         """
-        self.name = name
-        super().__init__(device=device)
+        super().__init__(model_id=model_id, torch_dtype=torch_dtype, device=device)
 
-    def _validate_args(self) -> None:
-        """
-        Validate the provided arguments.
-
-        Raises:
-            ValueError: If the model name is None.
-        """
-        if self.name not in self.available_models:
-            raise ValueError(f"Model {self.name} not found; available models: {self.available_models}")
-
-    def _load_model(self) -> None:
+    def _load_model_or_pipeline(self) -> None:
         """
         Load the ALBERT model for text classification.
         """
-        self.model = pipeline("text-classification", model=self.name, top_k=None, device=self.device)
+        model = AutoModelForSequenceClassification.from_pretrained(
+            self.model_id,
+            torch_dtype=self.torch_dtype,
+            low_cpu_mem_usage=True,
+        )
+        model = model.to_bettertransformer().to(self.device)
+        processor = AutoProcessor.from_pretrained(self.model_id)
+        logger.info(f"Loaded model {self.model_id} on device {self.device}")
+
+        self.pipeline = pipeline(
+            task="text-classification",
+            model=model,
+            tokenizer=processor,
+            use_fast=True,
+            device=self.device,
+            torch_dtype=self.torch_dtype,
+            top_k=None,
+        )
 
     def _preprocess(self, input_text: str) -> str:
         """
@@ -85,7 +90,10 @@ class UDIntentClassifier(UDBase):
         Returns:
             classification results.
         """
-        cls_output = self.model(input_text)
+        cls_output = self.pipeline(input_text)
+
+        # As we use a batch size of 1 during the inference, we need to extract the first element
+        # from the list.
         return cls_output[0]
 
     def _postprocess(
