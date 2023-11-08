@@ -116,7 +116,7 @@ def create_gradio_ui_elements():
     outputs = [
         gr.Textbox(label="ASR Result"),
         gr.Textbox(label="SER Result"),
-        gr.Textbox(label="Intent Detection"),
+        gr.Textbox(label="Top 3 Intent Detection"),
         gr.Textbox(label="Keyword Extraction"),
         gr.Textbox(label="Summarization"),
         gr.Textbox(label="Sentiment Analysis"),
