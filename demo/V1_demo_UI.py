@@ -3,7 +3,6 @@ from typing import List, Tuple
 import gradio as gr
 import numpy as np
 import torch
-import whisper
 
 from unified_desktop.pipelines import (
     UDIntentClassifier,
@@ -37,11 +36,11 @@ def demo_init():
 
     # Gradio components for model selection and device selection
     model_dropdown_ASR = gr.Dropdown(
-        label="ASR Model Selection", choices=whisper.available_models(), value="tiny.en"
+        label="ASR Model Selection", choices=UDSpeechRecognizer.models_list, value="openai/whisper-tiny.en"
     )
 
     # model_dropdown_ASR.observe(update_asr_obj, names="value")
-    asrObj = UDSpeechRecognizer(name=model_dropdown_ASR.value, device=device_dropdown.value)
+    asrObj = UDSpeechRecognizer(model_id=model_dropdown_ASR.value, device=device_dropdown.value)
 
     # initiate SER object
     global serObj
@@ -56,11 +55,7 @@ def demo_init():
 
 def demo_asr(audio: str) -> str:
     # Transcribe the audio file to text
-
-    # Use fp16 if on CUDA, else fp32
-    fp16 = device_dropdown.value in CUDA_OPTIONS
-
-    return asrObj(audio, verbose=False, fp16=fp16)  # type: ignore
+    return asrObj(audio)  # type: ignore
 
 
 def demo_ser(audio: str) -> str:
@@ -71,7 +66,7 @@ def demo_intent_detection(text: str) -> List[Tuple[str, float]]:
     # Input text for keywords extraction
     top_k = 3
     model_intent = "vineetsharma/customer-support-intent-albert"
-    intentObj = UDIntentClassifier(name=model_intent, device=device_dropdown.value)
+    intentObj = UDIntentClassifier(model_id=model_intent, device=device_dropdown.value)
     intent_results = intentObj(text, top_k)
     list_intent = []
     for item in intent_results:
@@ -81,7 +76,7 @@ def demo_intent_detection(text: str) -> List[Tuple[str, float]]:
 
 def demo_keyword_extraction(text: str) -> List[str]:
     model_key = "yanekyuk/bert-uncased-keyword-extractor"
-    KeyObj = UDKeyExtractor(name=model_key, device=device_dropdown.value)
+    KeyObj = UDKeyExtractor(model_id=model_key, device=device_dropdown.value)
     key_results = KeyObj(text)
     list_keys = []
     for item in key_results:
