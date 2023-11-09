@@ -2,19 +2,15 @@ from typing import List, Tuple
 
 import gradio as gr
 import numpy as np
-import torch
 
 from unified_desktop.pipelines import (
     UDIntentClassifier,
-    UDKeyExtractor,
+    UDKeyExtractor2,
     UDSentimentDetector,
     UDSpeechEmotionRecognizer,
     UDSpeechRecognizer,
     UDSummarizer,
 )
-
-CUDA_OPTIONS = [f"cuda:{idx}" for idx in range(torch.cuda.device_count())]
-device_dropdown = gr.Dropdown(label="Device", choices=["cpu"] + CUDA_OPTIONS, value="cpu")
 
 # Ud_Audio to upload for the demo:
 # https://walgreens-my.sharepoint.com/:f:/p/zeinab_takbiri/EpKsj2-WSwFLhApq7pHi1Q0BwDXMT-CizP50h3gpqD6WHA?e=tHr4rc
@@ -39,7 +35,7 @@ def demo_init():
 
     # Initiate Keyword Extraction object
     global KeyObj
-    KeyObj = UDKeyExtractor()
+    KeyObj = UDKeyExtractor2()
 
 
 def demo_asr(audio: str) -> str:
@@ -62,11 +58,7 @@ def demo_intent_detection(text: str) -> List[Tuple[str, float]]:
 
 
 def demo_keyword_extraction(text: str) -> List[str]:
-    key_results = KeyObj(text)  # type: ignore
-    list_keys = []
-    for item in key_results:
-        list_keys.append(item["word"])
-    return list_keys
+    return KeyObj(text)  # type: ignore
 
 
 def demo_summarization(text: str) -> str:
