@@ -21,36 +21,25 @@ device_dropdown = gr.Dropdown(label="Device", choices=["cpu"] + CUDA_OPTIONS, va
 
 
 def demo_init():
-    """
-    Demo initialization steps:
-        1. Initialize objects
-    """
-    # open(log_file, "w").close()
-    # logger.info("Initialization started...")
-
-    # Set device:
-
     # Initialize ASR object
     global asrObj
-    asrObj = None
+    asrObj = UDSpeechRecognizer()
 
-    # Gradio components for model selection and device selection
-    model_dropdown_ASR = gr.Dropdown(
-        label="ASR Model Selection", choices=UDSpeechRecognizer.models_list, value="openai/whisper-tiny.en"
-    )
-
-    # model_dropdown_ASR.observe(update_asr_obj, names="value")
-    asrObj = UDSpeechRecognizer(model_id=model_dropdown_ASR.value, device=device_dropdown.value)
-
-    # initiate SER object
+    # Initiate SER object
     global serObj
-    # Attach the update function to the dropdown
-    # device_dropdown.observe(update_ser_obj, names="value")
-    serObj = UDSpeechEmotionRecognizer(device=device_dropdown.value)
+    serObj = UDSpeechEmotionRecognizer()
 
-    # intiate summarization object
+    # Intiate Summarization object
     global summarizer
-    summarizer = UDSummarizer(device=device_dropdown.value)
+    summarizer = UDSummarizer()
+
+    # Initiate Intent Detection object
+    global intentObj
+    intentObj = UDIntentClassifier()
+
+    # Initiate Keyword Extraction object
+    global KeyObj
+    KeyObj = UDKeyExtractor()
 
 
 def demo_asr(audio: str) -> str:
@@ -65,9 +54,7 @@ def demo_ser(audio: str) -> str:
 def demo_intent_detection(text: str) -> List[Tuple[str, float]]:
     # Input text for keywords extraction
     top_k = 3
-    model_intent = "vineetsharma/customer-support-intent-albert"
-    intentObj = UDIntentClassifier(model_id=model_intent, device=device_dropdown.value)
-    intent_results = intentObj(text, top_k)
+    intent_results = intentObj(text, top_k)  # type: ignore
     list_intent = []
     for item in intent_results:
         list_intent.append((item["label"], np.round(item["score"], 3)))
@@ -75,9 +62,7 @@ def demo_intent_detection(text: str) -> List[Tuple[str, float]]:
 
 
 def demo_keyword_extraction(text: str) -> List[str]:
-    model_key = "yanekyuk/bert-uncased-keyword-extractor"
-    KeyObj = UDKeyExtractor(model_id=model_key, device=device_dropdown.value)
-    key_results = KeyObj(text)
+    key_results = KeyObj(text)  # type: ignore
     list_keys = []
     for item in key_results:
         list_keys.append(item["word"])
