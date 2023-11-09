@@ -2,7 +2,6 @@ from typing import List, Tuple
 
 import gradio as gr
 import numpy as np
-import torch
 
 from unified_desktop.pipelines import (
     UDIntentClassifier,
@@ -12,9 +11,6 @@ from unified_desktop.pipelines import (
     UDSpeechRecognizer,
     UDSummarizer,
 )
-
-CUDA_OPTIONS = [f"cuda:{idx}" for idx in range(torch.cuda.device_count())]
-device_dropdown = gr.Dropdown(label="Device", choices=["cpu"] + CUDA_OPTIONS, value="cpu")
 
 # Ud_Audio to upload for the demo:
 # https://walgreens-my.sharepoint.com/:f:/p/zeinab_takbiri/EpKsj2-WSwFLhApq7pHi1Q0BwDXMT-CizP50h3gpqD6WHA?e=tHr4rc
