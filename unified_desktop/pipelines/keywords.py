@@ -4,7 +4,7 @@ from typing import ClassVar, List, Optional, Sequence, TypedDict, Union
 import torch
 from nltk.corpus import stopwords
 from textblob import Word
-from transformers import AutoModelForTokenClassification, AutoProcessor, pipeline
+from transformers import pipeline
 
 from unified_desktop.core.utils.logging import setup_logger
 from unified_desktop.pipelines.base import UDBase
@@ -12,34 +12,21 @@ from unified_desktop.pipelines.base import UDBase
 logger = setup_logger()
 
 
-class RawKeyPredictions(TypedDict):
+class KeyPredictions(TypedDict):
     """The predictions from the model."""
 
-    entity: str
-    score: float
-    index: int
-    word: str
-    start: int
-    end: int
+    summary_text: str
 
 
-class KeyPredictions(TypedDict):
-    """The filtered predictions from the model."""
-
-    score: float
-    index: int
-    word: str
-
-
-class UDKeyExtractor(UDBase):
+class UDKeyExtractor2(UDBase):
     """A class for performing Keyword Extraction using the BERT based model."""
 
-    models_list: ClassVar[Sequence[str]] = ["yanekyuk/bert-uncased-keyword-extractor"]
+    models_list: ClassVar[Sequence[str]] = ["transformer3/H2-keywordextractor"]
     regex: re.Pattern[str] = re.compile(r"([^\W\d_])\1{2,}")
 
     def __init__(
         self,
-        model_id: str = "yanekyuk/bert-uncased-keyword-extractor",
+        model_id: str = "transformer3/H2-keywordextractor",
         torch_dtype: Optional[torch.dtype] = None,
         device: Optional[Union[str, torch.device]] = None,
     ) -> None:
@@ -55,24 +42,8 @@ class UDKeyExtractor(UDBase):
         self.sw_nltk = stopwords.words("english")
 
     def _load_model_or_pipeline(self) -> None:
-        """Load the ALBERT model for text classification."""
-        model = AutoModelForTokenClassification.from_pretrained(
-            self.model_id,
-            torch_dtype=self.torch_dtype,
-            low_cpu_mem_usage=True,
-        )
-        model = model.to_bettertransformer().to(self.device)
-        processor = AutoProcessor.from_pretrained(self.model_id)
-        logger.info(f"Loaded model {self.model_id} on device {self.device}")
-
-        self.pipeline = pipeline(
-            task="token-classification",
-            model=model,
-            tokenizer=processor,
-            use_fast=True,
-            device=self.device,
-            torch_dtype=self.torch_dtype,
-        )
+        """Load the model for text classification."""
+        self.pipeline = pipeline("summarization", model=self.model_id, device=self.device)
 
     def _preprocess(self, input_text: str) -> str:
         """Preprocess the input text.
@@ -93,26 +64,26 @@ class UDKeyExtractor(UDBase):
 
         return input_text
 
-    def _predict(self, input_text: str) -> List[RawKeyPredictions]:
+    def _predict(self, input_text: str) -> List[KeyPredictions]:
         """Predict the intent of the input text.
 
         Args:
             input_text: The input text for keyword extraction.
 
         Returns:
-            prediction results (list of keys in "RawKeyPredictions")
+            prediction results (list of keys in "KeyPredictions")
         """
         return self.pipeline(input_text)
 
-    def _postprocess(self, predictions: List[RawKeyPredictions]) -> List[KeyPredictions]:
+    def _postprocess(self, predictions: List[KeyPredictions]) -> List[str]:
         """Postprocess the classification predictions.
 
         Args:
-            predictions: The list of raw classification predictions.
+            predictions: The list of classification predictions.
             sw_nltk: stop words
 
         Returns:
-            List[KeyPredictions]:A list of dict [index, the keyword, score] - remove
+            List[KeyPredictions]:A list of dict [summary_text] - remove
             repetetive and stop words.
         """
 
@@ -123,24 +94,22 @@ class UDKeyExtractor(UDBase):
         filtered_predictions = []
 
         for item in predictions:
-            word = item["word"].lower()  # Access the attributes correctly using brackets
+            word = item["summary_text"].lower()  # Access the attributes correctly using brackets
 
             if word not in self.sw_nltk and word not in seen_words:
                 seen_words.add(word)
-                filtered_predictions.append(
-                    KeyPredictions(score=item["score"], index=item["index"], word=item["word"])
-                )
+                filtered_predictions.append(item["summary_text"])
 
         return filtered_predictions
 
-    def __call__(self, input_text: str) -> List[KeyPredictions]:
+    def __call__(self, input_text: str) -> List[str]:
         """Make a keyword extraction prediction.
 
         Args:
             input_text: The input text for keyword extraction.
 
         Returns:
-            List[KeyPredictions]: A list of tuples [index of the word, the keyword, score].
+            A list of [summary_text].
         """
         input_text = self._preprocess(input_text)
         predictions = self._predict(input_text)
