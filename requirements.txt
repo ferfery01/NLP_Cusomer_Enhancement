@@ -8,6 +8,7 @@ torchaudio==2.1.0+cu118; sys_platform == "linux"
 # === Install all other dependencies ===
 accelerate==0.24.1
 click==8.1.7
+gradio==4.1.2
 nltk == 3.8.1
 openpyxl==3.1.2
 optimum==1.14.0
