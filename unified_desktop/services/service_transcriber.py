@@ -50,6 +50,7 @@ class SpeechTranscriber:
     def __init__(self, speech_recognizer: Optional[UDSpeechRecognizer] = None) -> None:
         self._speech_recognizer = speech_recognizer or UDSpeechRecognizer()
         self._transcription: str = ""
+        self._is_recording: bool = False
 
     @classmethod
     def list_microphones(self) -> None:
@@ -58,7 +59,7 @@ class SpeechTranscriber:
         for index, name in enumerate(sr.Microphone.list_microphone_names()):
             print(f"Microphone {index}: {name}")
 
-    def initialize_microphone(self, device_index: Optional[int] = None, duration: int = 1) -> None:
+    def initialize_microphone(self, device_index: Optional[int] = None, duration: int = 2) -> None:
         """Initializes microphone settings for audio capture."""
         self._recognizer = sr.Recognizer()
         self._recognizer.dynamic_energy_threshold = False
@@ -70,6 +71,7 @@ class SpeechTranscriber:
         self._audio_queue: queue.Queue[Optional[sr.AudioData]] = queue.Queue()
         self._stop_listening = None  # Handle to stop the background listener
 
+        # Adjust the recognizer sensitivity to ambient noise and start listening in the background
         with self._microphone as source:
             logger.info("🎧 Adjusting for ambient noise...")
             self._recognizer.adjust_for_ambient_noise(source, duration)
@@ -87,9 +89,11 @@ class SpeechTranscriber:
         if not self._microphone:
             raise RuntimeError("Microphone not initialized. Call self.initialize_microphone() first.")
 
-        # Adjust the recognizer sensitivity to ambient noise and start listening in the background
-        with self._microphone as source:
-            self._recognizer.adjust_for_ambient_noise(source)
+        if self._is_recording:
+            return None  # Already recording
+
+        # Set flag to indicate that we are recording
+        self._is_recording = True
 
         # Create a background thread that will pass us raw audio bytes.
         self._stop_listening = self._recognizer.listen_in_background(self._microphone, self._record_callback)
@@ -104,6 +108,12 @@ class SpeechTranscriber:
 
     def stop_recording(self) -> None:
         """Stop the recording, signal the processing thread to stop, and wait for it to finish."""
+        if not self._is_recording:
+            return None  # Not recording
+
+        # Set flag to indicate that we are no longer recording
+        self._is_recording = False
+
         if hasattr(self, "_stop_listening") and self._stop_listening:
             self._stop_listening(wait_for_stop=False)
 
@@ -139,6 +149,11 @@ class SpeechTranscriber:
     def transcription(self) -> str:
         """Returns the current transcription."""
         return self._transcription
+
+    @property
+    def is_recording(self) -> bool:
+        """Indicates whether the service is currently recording."""
+        return self._is_recording
 
 
 if __name__ == "__main__":
