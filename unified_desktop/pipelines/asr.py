@@ -50,12 +50,8 @@ class UDSpeechRecognizer(UDBase):
         torch_dtype: Optional[torch.dtype] = None,
         device: Optional[Union[str, torch.device]] = None,
     ) -> None:
-        self.model_id = model_id
         self.chunk_length_s = chunk_length_s
         self.batch_size = batch_size
-        self.torch_dtype = torch_dtype
-        if torch_dtype is None:
-            self.torch_dtype = torch.float16 if torch.cuda.is_available() else torch.float32
         super().__init__(model_id=model_id, torch_dtype=torch_dtype, device=device)
 
     def _validate_args(self) -> None:
