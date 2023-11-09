@@ -6,7 +6,7 @@ import torch
 
 from unified_desktop.pipelines import (
     UDIntentClassifier,
-    UDKeyExtractor,
+    UDKeyExtractor2,
     UDSentimentDetector,
     UDSpeechEmotionRecognizer,
     UDSpeechRecognizer,
@@ -75,13 +75,9 @@ def demo_intent_detection(text: str) -> List[Tuple[str, float]]:
 
 
 def demo_keyword_extraction(text: str) -> List[str]:
-    model_key = "yanekyuk/bert-uncased-keyword-extractor"
-    KeyObj = UDKeyExtractor(model_id=model_key, device=device_dropdown.value)
-    key_results = KeyObj(text)
-    list_keys = []
-    for item in key_results:
-        list_keys.append(item["word"])
-    return list_keys
+    model_key = "transformer3/H2-keywordextractor"
+    KeyObj = UDKeyExtractor2(model_id=model_key, device=device_dropdown.value)
+    return KeyObj(text)
 
 
 def demo_summarization(text: str) -> str:
