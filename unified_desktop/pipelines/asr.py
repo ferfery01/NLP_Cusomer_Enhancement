@@ -44,7 +44,7 @@ class UDSpeechRecognizer(UDBase):
 
     def __init__(
         self,
-        model_id: str = "distil-whisper/distil-medium.en",
+        model_id: str = "openai/whisper-tiny.en",
         chunk_length_s: Optional[int] = 15,
         batch_size: Optional[int] = 4,
         torch_dtype: Optional[torch.dtype] = None,
