@@ -18,7 +18,7 @@ class KeyPredictions(TypedDict):
     summary_text: str
 
 
-class UDKeyExtractor2(UDBase):
+class UDKeyExtractor(UDBase):
     """A class for performing Keyword Extraction using the BERT based model."""
 
     models_list: ClassVar[Sequence[str]] = ["transformer3/H2-keywordextractor"]
