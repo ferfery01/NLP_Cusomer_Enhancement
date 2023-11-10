@@ -9,6 +9,7 @@ from unified_desktop.pipelines import (
     UDKeyExtractor,
     UDSentimentDetector,
     UDSpeechRecognizer,
+    UDSummarizer,
 )
 from unified_desktop.services.service_transcriber import SpeechTranscriber
 
@@ -28,6 +29,7 @@ class ContentEvaluator(SpeechTranscriber):
         intent_classifier (UDIntentClassifier): An intent classification model.
         sentiment_detector (UDSentimentDetector): A sentiment analysis model.
         process_interval (float): Interval in seconds for processing transcriptions.
+        last_n_sentences (int): Number of sentences to consider for sentiment analysis.
         shutdown_event (threading.Event): Signal to shutdown the processing thread.
         scheduler (sched.scheduler): Scheduler for processing tasks.
         _intent (str): Detected intent from the latest processed transcription.
@@ -58,15 +60,27 @@ class ContentEvaluator(SpeechTranscriber):
         intent_classifier: Optional[UDIntentClassifier] = None,
         sentiment_detector: Optional[UDSentimentDetector] = None,
         keyword_extractor: Optional[UDKeyExtractor] = None,
+        summarizer: Optional[UDSummarizer] = None,
         process_interval: float = 45.0,
+        last_n_sentences: Optional[int] = 8,
+        pause_threshold: float = 0.25,
+        phrase_time_limit: Optional[int] = 15,
+        summary_length_limit: Optional[int] = 100,
     ) -> None:
-        super().__init__(speech_recognizer=speech_recognizer)
+        super().__init__(
+            speech_recognizer=speech_recognizer,
+            summarizer=summarizer,
+            pause_threshold=pause_threshold,
+            phrase_time_limit=phrase_time_limit,
+            summary_length_limit=summary_length_limit,
+        )
         # Initialize appropriate model class with defaults, if none provided
         self._intent_classifier = intent_classifier or UDIntentClassifier()
         self._sentiment_detector = sentiment_detector or UDSentimentDetector()
         self._keyword_extractor = keyword_extractor or UDKeyExtractor()
 
         self.process_interval = process_interval
+        self.last_n_sentences = last_n_sentences
         self._shutdown_event = threading.Event()
         self._scheduler = sched.scheduler(time.time, time.sleep)
 
@@ -110,15 +124,18 @@ class ContentEvaluator(SpeechTranscriber):
 
     def _predict_intent(self, text: str) -> str:
         """Predicts the intent of the provided text."""
-        return self._intent_classifier(self._transcription)[0]["label"]
+        return self._intent_classifier(text)[0]["label"]
 
     def _predict_sentiment(self, text: str) -> str:
         """Predicts the sentiment of the provided text."""
-        return self._sentiment_detector(self._transcription).sentiment
+        recent_transcript = (
+            ".".join(text.split(".")[-self.last_n_sentences :]) if self.last_n_sentences is not None else text
+        )
+        return self._sentiment_detector(recent_transcript).sentiment
 
     def _extract_keywords(self, text: str) -> List[str]:
         """Extracts keywords from the provided text."""
-        return [keywords["word"] for keywords in self._keyword_extractor(text)]
+        return self._keyword_extractor(text)
 
     def _process_transcriptions(self):
         """Processes the transcription to extract keywords and perform intent and sentiment analysis."""

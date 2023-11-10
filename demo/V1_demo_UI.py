@@ -16,57 +16,39 @@ from unified_desktop.pipelines import (
 # https://walgreens-my.sharepoint.com/:f:/p/zeinab_takbiri/EpKsj2-WSwFLhApq7pHi1Q0BwDXMT-CizP50h3gpqD6WHA?e=tHr4rc
 
 
-def demo_init():
-    # Initialize ASR object
-    global asrObj
-    asrObj = UDSpeechRecognizer()
-
-    # Initiate SER object
-    global serObj
-    serObj = UDSpeechEmotionRecognizer()
-
-    # Intiate Summarization object
-    global summarizer
-    summarizer = UDSummarizer()
-
-    # Initiate Intent Detection object
-    global intentObj
-    intentObj = UDIntentClassifier()
-
-    # Initiate Keyword Extraction object
-    global KeyObj
-    KeyObj = UDKeyExtractor()
+asrObj = UDSpeechRecognizer(model_id="openai/whisper-base.en")
+serObj = UDSpeechEmotionRecognizer()
+summarizer = UDSummarizer()
+intentObj = UDIntentClassifier()
+KeyObj = UDKeyExtractor()
 
 
 def demo_asr(audio: str) -> str:
     # Transcribe the audio file to text
-    return asrObj(audio)  # type: ignore
+    return asrObj(audio)
 
 
 def demo_ser(audio: str) -> str:
-    return serObj(audio).label  # type: ignore
+    return serObj(audio).label
 
 
 def demo_intent_detection(text: str) -> List[Tuple[str, float]]:
     # Input text for keywords extraction
     top_k = 3
-    intent_results = intentObj(text, top_k)  # type: ignore
+    intent_results = intentObj(text, top_k)
     list_intent = []
     for item in intent_results:
         list_intent.append((item["label"], np.round(item["score"], 3)))
     return list_intent
 
 
-def demo_keyword_extraction(text: str) -> List[str]:
-    key_results = KeyObj(text)  # type: ignore
-    list_keys = []
-    for item in key_results:
-        list_keys.append(item["word"])
-    return list_keys
+def demo_keyword_extraction(text: str) -> str:
+    key_results = KeyObj(text)
+    return ", ".join(key_results)
 
 
 def demo_summarization(text: str) -> str:
-    summary = summarizer(text)  # type: ignore
+    summary = summarizer(text)
     return summary
 
 
@@ -104,6 +86,5 @@ def create_gradio_ui_elements():
 
 
 if __name__ == "__main__":
-    demo_init()
     inputs, outputs = create_gradio_ui_elements()
     gr.Interface(NLP_task_processing, inputs, outputs).launch()

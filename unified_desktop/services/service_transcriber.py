@@ -9,13 +9,13 @@ import pyaudio
 import speech_recognition as sr
 
 from unified_desktop.core.utils.logging import setup_logger
-from unified_desktop.pipelines.asr import UDSpeechRecognizer
+from unified_desktop.pipelines import UDSpeechRecognizer, UDSummarizer
 
 logger = setup_logger()
 
 
 class SpeechTranscriber:
-    """Provides a service to transcribe speech from various audio sources using the UDSpeechRecognizer.
+    """Provides a service to transcribe speech from various audio sources and summarize the transcription.
 
     The class can transcribe live audio from a selected microphone or pre-recorded audio files. It operates by
     capturing audio in real-time, queuing the audio data, and processing the queue in a separate thread to transcribe
@@ -47,8 +47,21 @@ class SpeechTranscriber:
         transcription = transcriber.transcribe('path_to_audio_file.wav')
     """
 
-    def __init__(self, speech_recognizer: Optional[UDSpeechRecognizer] = None) -> None:
+    def __init__(
+        self,
+        speech_recognizer: Optional[UDSpeechRecognizer] = None,
+        summarizer: Optional[UDSummarizer] = None,
+        pause_threshold: float = 0.25,
+        phrase_time_limit: Optional[int] = 15,
+        summary_length_limit: Optional[int] = 100,
+    ) -> None:
         self._speech_recognizer = speech_recognizer or UDSpeechRecognizer()
+        self._summarizer = summarizer or UDSummarizer()
+        self._pause_threshold = pause_threshold
+        self._phrase_time_limit = phrase_time_limit
+        self._max_summary_length = summary_length_limit
+
+        self._summary: Optional[str] = None
         self._transcription: str = ""
         self._is_recording: bool = False
 
@@ -63,6 +76,8 @@ class SpeechTranscriber:
         """Initializes microphone settings for audio capture."""
         self._recognizer = sr.Recognizer()
         self._recognizer.dynamic_energy_threshold = False
+        self._recognizer.non_speaking_duration = 0.2
+        self._recognizer.pause_threshold = self._pause_threshold
 
         self._microphone = sr.Microphone(device_index=device_index, sample_rate=16000)
         device_index = device_index or pyaudio.PyAudio().get_default_input_device_info()["index"]
@@ -96,7 +111,9 @@ class SpeechTranscriber:
         self._is_recording = True
 
         # Create a background thread that will pass us raw audio bytes.
-        self._stop_listening = self._recognizer.listen_in_background(self._microphone, self._record_callback)
+        self._stop_listening = self._recognizer.listen_in_background(
+            self._microphone, self._record_callback, phrase_time_limit=self._phrase_time_limit
+        )
 
     def start_processing(self):
         self.start_recording()
@@ -108,18 +125,25 @@ class SpeechTranscriber:
 
     def stop_recording(self) -> None:
         """Stop the recording, signal the processing thread to stop, and wait for it to finish."""
+        if hasattr(self, "_stop_listening") and self._stop_listening:
+            self._stop_listening(wait_for_stop=False)
+
+        # Empty the queue
+        if self._audio_queue is not None:
+            while not self._audio_queue.empty():
+                self._audio_queue.get()
+
+        self._audio_queue.put(None)  # Enqueue None to signal the thread to stop
+
+        logger.info(f"Full Audio Transcription: {self.transcription}")
+        logger.info(f"Transcript Summary: {self.summary}")
+
+    def stop_processing(self):
         if not self._is_recording:
             return None  # Not recording
 
         # Set flag to indicate that we are no longer recording
         self._is_recording = False
-
-        if hasattr(self, "_stop_listening") and self._stop_listening:
-            self._stop_listening(wait_for_stop=False)
-
-        self._audio_queue.put(None)  # Enqueue None to signal the thread to stop
-
-    def stop_processing(self):
         self.stop_recording()
 
         if hasattr(self, "_audio_processing_thread"):
@@ -145,10 +169,25 @@ class SpeechTranscriber:
         """Transcribes audio data using the UDSpeechRecognizer."""
         return self._speech_recognizer(audio)
 
+    def summarize_transcript(self, transcript: str) -> str:
+        """Summarize the provided transcript using the UDSummarizer."""
+        return self._summarizer(transcript, max_length=self._max_summary_length)
+
     @property
     def transcription(self) -> str:
         """Returns the current transcription."""
         return self._transcription
+
+    @property
+    def summary(self) -> str:
+        """Returns the current summary of the transcription."""
+        if not self._transcription:
+            raise RuntimeError("No transcription available. Call self.transcribe() first.")
+
+        # Summarize the transcription if not already done
+        if not self._summary:
+            self._summary = self.summarize_transcript(self._transcription)
+        return self._summary
 
     @property
     def is_recording(self) -> bool:
@@ -171,4 +210,3 @@ if __name__ == "__main__":
     finally:
         # Stop processing and cleanup
         transcriber.stop_processing()
-        logger.info(f"Full Audio Speech Transcription: {transcriber.transcription}")

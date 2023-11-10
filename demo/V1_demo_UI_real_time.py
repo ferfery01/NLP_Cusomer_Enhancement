@@ -3,7 +3,7 @@ import gradio as gr
 from unified_desktop.services import ContentEvaluator
 
 # Initialize the content evaluator service with the defined interval
-ud_service = ContentEvaluator(process_interval=45)
+ud_service = ContentEvaluator(process_interval=30)
 
 # Initialize the microphone for audio input
 ud_service.initialize_microphone()
@@ -34,30 +34,36 @@ def display_keywords() -> str:
 
 
 # Define and setup the Gradio UI components
-with gr.Blocks() as demo:
+with gr.Blocks(theme=gr.themes.Default()) as demo:
     # Define a row for the record and stop buttons
     with gr.Row():
-        record_btn = gr.Button("Record")
-        stop_btn = gr.Button("Stop")
+        record_btn = gr.Button("Record", variant="primary")
+        stop_btn = gr.Button("Stop", variant="primary")
 
     # Define a column for displaying the results of content analysis
     with gr.Column():
-        transcript = gr.Textbox(label="Transcript", value=display_transcript, every=1)
-        sentiment = gr.Textbox(label="Sentiment", value=display_sentiment, every=15)
-        intent = gr.Textbox(label="Intent", value=display_intent, every=15)
-        keywords = gr.Textbox(label="Keywords", value=display_keywords, every=15)
+        transcript = gr.Textbox(label="Transcript", value=display_transcript, every=1, interactive=False)
+        sentiment = gr.Textbox(label="Sentiment", value=display_sentiment, every=5, interactive=False)
+        intent = gr.Textbox(label="Intent", value=display_intent, every=5, interactive=False)
+        keywords = gr.Textbox(label="Keywords", value=display_keywords, every=5, interactive=False)
+        summary = gr.Textbox(label="Summary", interactive=False)
+        summary_btn = gr.Button("Generate Summary")
 
-    # Define the actions for the record button
+    # Define the actions for different buttons
     @record_btn.click()
-    def start_recording():
+    def start_recording() -> None:
         """Start the content analysis processing."""
         ud_service.start_processing()
 
-    # Define the actions for the stop button
     @stop_btn.click()
-    def stop_recording():
+    def stop_recording() -> None:
         """Stop the content analysis processing."""
         ud_service.stop_processing()
+
+    @summary_btn.click(inputs=[], outputs=summary)
+    def display_summary() -> str:
+        """Fetch and display the current summary."""
+        return ud_service.summary
 
 
 # Launch the Gradio interface when the script is run

@@ -1,10 +1,10 @@
 import re
-from typing import ClassVar, List, Optional, Sequence, TypedDict, Union
+from typing import Any, ClassVar, List, Optional, Sequence, TypedDict, Union
 
 import torch
 from nltk.corpus import stopwords
 from textblob import Word
-from transformers import pipeline
+from transformers import AutoModelForSeq2SeqLM, AutoProcessor, pipeline
 
 from unified_desktop.core.utils.logging import setup_logger
 from unified_desktop.pipelines.base import UDBase
@@ -43,7 +43,23 @@ class UDKeyExtractor(UDBase):
 
     def _load_model_or_pipeline(self) -> None:
         """Load the model for text classification."""
-        self.pipeline = pipeline("summarization", model=self.model_id, device=self.device)
+        model = AutoModelForSeq2SeqLM.from_pretrained(
+            self.model_id,
+            torch_dtype=self.torch_dtype,
+            low_cpu_mem_usage=True,
+        )
+        model = model.to_bettertransformer().to(self.device)
+        processor = AutoProcessor.from_pretrained(self.model_id)
+        logger.info(f"Loaded model {self.model_id} on device {self.device}")
+
+        self.pipeline = pipeline(
+            task="summarization",
+            model=model,
+            tokenizer=processor,
+            use_fast=True,
+            device=self.device,
+            torch_dtype=self.torch_dtype,
+        )
 
     def _preprocess(self, input_text: str) -> str:
         """Preprocess the input text.
@@ -64,7 +80,7 @@ class UDKeyExtractor(UDBase):
 
         return input_text
 
-    def _predict(self, input_text: str) -> List[KeyPredictions]:
+    def _predict(self, input_text: str, **kwargs: Any) -> List[KeyPredictions]:
         """Predict the intent of the input text.
 
         Args:
@@ -73,7 +89,7 @@ class UDKeyExtractor(UDBase):
         Returns:
             prediction results (list of keys in "KeyPredictions")
         """
-        return self.pipeline(input_text)
+        return self.pipeline(input_text, **kwargs)
 
     def _postprocess(self, predictions: List[KeyPredictions]) -> List[str]:
         """Postprocess the classification predictions.
@@ -102,7 +118,7 @@ class UDKeyExtractor(UDBase):
 
         return filtered_predictions
 
-    def __call__(self, input_text: str) -> List[str]:
+    def __call__(self, input_text: str, max_length: Optional[int] = 20) -> List[str]:
         """Make a keyword extraction prediction.
 
         Args:
@@ -112,5 +128,5 @@ class UDKeyExtractor(UDBase):
             A list of [summary_text].
         """
         input_text = self._preprocess(input_text)
-        predictions = self._predict(input_text)
+        predictions = self._predict(input_text, max_length=max_length)
         return self._postprocess(predictions)
